@@ -1,6 +1,7 @@
-package com.skamnos.itens.item;
+package com.skamnos.modelo.item;
 
 import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.modelo.jogador.Jogador;
 
 public interface Item {
     
