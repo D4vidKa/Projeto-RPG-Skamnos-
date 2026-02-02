@@ -6,5 +6,5 @@ public interface Item {
      */
     String getNome();
     int getPreco();
-    
+    String getDescricao();
 }

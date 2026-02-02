@@ -123,8 +123,8 @@ public abstract class Entidade {
     };
 
     // Método para receber cura
-    public void receberCura(int cura){
-        this.setVida(this.getVida() + cura);
+    public void receberCura(int valorCura){
+        this.setVida(this.getVida() + valorCura);
         if (this.getVida() > this.getVidaMaxima()){
             this.setVida(this.getVidaMaxima());
         }
