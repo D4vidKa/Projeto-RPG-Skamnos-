@@ -10,7 +10,11 @@ public class MilagreDeHydrax implements Consumiveis {
     // Atributos do item
     private String nome = "Milagre de Hydrax";
     private int preco = 100;
-    private String descricao = "A obra-prima de Silas que o fez virar um dos grandes Magister do Conclave, criada em colaboração com outros discípulos após anos de desenvolvimento. Esta poção foi desenvolvida a pedido da Mestra-Oráculo Lyra para fortalecer seus espiões em missões de extremo risco, sendo capaz de recuperar toda a vitalidade de uma pessoa.";
+    private String descricao = """
+            Efeito: ---Recupera toda a Vida---
+            A obra-prima de Silas que o fez virar um dos grandes Magister do Conclave, criada em colaboração com outros discípulos após anos de desenvolvimento.
+            Esta poção foi desenvolvida a pedido da Mestra-Oráculo Lyra para fortalecer seus espiões em missões de extremo risco, sendo capaz de recuperar toda a vitalidade de uma pessoa.
+            """;
 
     /*
      * Métodos implementados da interface Consumiveis
@@ -37,4 +41,8 @@ public class MilagreDeHydrax implements Consumiveis {
         System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
     }
 
+    @Override
+    public String toString() {
+        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
+    }
 }

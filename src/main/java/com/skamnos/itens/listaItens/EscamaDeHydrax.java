@@ -8,9 +8,12 @@ import com.skamnos.modelo.jogador.Jogador;
 public class EscamaDeHydrax implements Consumiveis {
     // Atributos do item
     private String nome = "Escama de Hydrax";
-    private int valorCura = 20;
     private int preco = 40;
-    private String descricao = "Uma poção capaz de recuperar uma pequena parte da vida do usuário. Foi criada por Silas um Discipulus do Conclave das Correntes há 200 anos.";
+    private String descricao = """
+            Efeito: ---Recupera 20 Pontos de Vida---
+            Uma poção capaz de recuperar uma pequena parte da vida do usuário.
+            Foi criada por Silas um Discipulus do Conclave das Correntes há 200 anos.
+            """;
 
     /*
     Métodos implementados da interface Consumiveis
@@ -32,7 +35,13 @@ public class EscamaDeHydrax implements Consumiveis {
 
     @Override
     public void usar(Jogador alvo) {
+        int valorCura = 20;
         alvo.receberCura(valorCura);
         System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+    }
+
+    @Override
+    public String toString() {
+        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
     }
 }

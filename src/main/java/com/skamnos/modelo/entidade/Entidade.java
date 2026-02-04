@@ -130,6 +130,15 @@ public abstract class Entidade {
         }
     };
 
+    public void receberMana(int valorMana){
+        this.setMana(this.getMana() + valorMana);
+        if (this.getMana() > this.getManaMaxima()){
+            this.setMana(this.getManaMaxima());
+        }
+    };
+
+    
+
     // Método para obter o elemento de ataque da entidade
     public Elemento getElementoAtaque(){
         return this.elemento;

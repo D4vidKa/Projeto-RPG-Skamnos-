@@ -9,9 +9,12 @@ import com.skamnos.modelo.jogador.Jogador;
 public class LagrimaDeHydrax implements Consumiveis {
     // Atributos do item
     private String nome = "Lágrima de Hydrax";
-    private int valorCura = 40;
     private int preco = 65;
-    private String descricao = "Uma versão aprimorada da escama comum, também criada por Silas. Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.";
+    private String descricao = """
+            Efeito: ---Recupera 40 Pontos de Vida---
+            Uma versão aprimorada da escama comum, também criada por Silas.
+            Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.
+            """;
 
     /*
      * Métodos implementados da interface Consumiveis
@@ -33,8 +36,13 @@ public class LagrimaDeHydrax implements Consumiveis {
 
     @Override
     public void usar(Jogador alvo) {
+        int valorCura = 40;
         alvo.receberCura(valorCura);
         System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
     }
 
+    @Override
+    public String toString() {
+        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
+    }
 }
