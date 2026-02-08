@@ -14,4 +14,5 @@ public abstract class Equipamento {
     private int bonusDefesa;
     private int bonusMana;
     private Elemento elementoItem;
+    
 }

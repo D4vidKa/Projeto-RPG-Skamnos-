@@ -107,9 +107,13 @@ public abstract class Entidade {
     
     // Método para receber dano
     public void receberDano(int dano){
-        this.setVida(this.getVida() - dano);
-        if (this.getVida() <= 0){
-            this.setVida(0);
+        if (dano >= 0){
+            this.setVida(this.getVida() - dano);
+            if (this.getVida() < 0){
+                this.setVida(0);
+            }
+        } else {
+            dano = 0; // Evita que o dano seja negativo
         }
     };
 
@@ -124,21 +128,27 @@ public abstract class Entidade {
 
     // Método para receber cura
     public void receberCura(int valorCura){
-        this.setVida(this.getVida() + valorCura);
-        if (this.getVida() > this.getVidaMaxima()){
-            this.setVida(this.getVidaMaxima());
+        if (valorCura >= 0){
+            this.setVida(this.getVida() + valorCura);
+            if (this.getVida() > this.getVidaMaxima()){
+                this.setVida(this.getVidaMaxima());
+            }
+        } else {
+            valorCura = 0; // Evita que a cura seja negativa
         }
     };
 
     public void receberMana(int valorMana){
-        this.setMana(this.getMana() + valorMana);
-        if (this.getMana() > this.getManaMaxima()){
-            this.setMana(this.getManaMaxima());
+        if (valorMana >= 0){
+            this.setMana(this.getMana() + valorMana);
+            if (this.getMana() > this.getManaMaxima()){
+                this.setMana(this.getManaMaxima());
+            }
+        } else {
+            valorMana = 0; // Evita que a mana seja negativa
         }
     };
-
     
-
     // Método para obter o elemento de ataque da entidade
     public Elemento getElementoAtaque(){
         return this.elemento;

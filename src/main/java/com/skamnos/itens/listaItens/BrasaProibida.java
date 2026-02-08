@@ -1,8 +1,12 @@
 package com.skamnos.itens.listaItens;
-
 import com.skamnos.itens.consumiveis.Consumiveis;
 import com.skamnos.modelo.jogador.Jogador;
+
+/*
+    Classe que representa a Brasa Proibida, um item consumível que restaura mana.
+ */
 public class BrasaProibida implements Consumiveis{
+    // Atributos do item
     private String nome = "Brasa Proibida";
     private int preco = 70;
     private String descricao = """
@@ -12,6 +16,9 @@ public class BrasaProibida implements Consumiveis{
             Dizem que ele se tornou viciado na própria criação antes de desaparecer sem deixar rastros.
             """;
 
+    /*
+    Métodos implementados da interface Consumiveis
+     */
     @Override
     public String getNome() {
         return nome;
