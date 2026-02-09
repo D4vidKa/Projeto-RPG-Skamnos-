@@ -86,4 +86,31 @@ public class EntidadeTeste {
         assertEquals(Elemento.IGNIS, entidade.getElementoAtaque()); // O elemento de ataque deve ser IGNIS
     }
     
+    @Test
+    public void atacarReduzVidaDoAlvo(){
+        Entidade alvo = new Entidade("Alvo", 100, 5, 5, 50, 1, Elemento.AEQUOR) {
+            // Implementação abstrata para permitir a criação de uma instância de Entidade
+        };
+        entidade.atacar(alvo); // Ataca o alvo
+        assertEquals(95, alvo.getVida()); // Vida do alvo deve ser reduzida em 5 (dano base)
+    }
+
+    @Test
+    public void defesaMaiorQueAtaque(){
+        Entidade alvo = new Entidade("Alvo", 100, 5, 15, 50, 1, Elemento.AEQUOR) {
+            // Implementação abstrata para permitir a criação de uma instância de Entidade
+        };
+        entidade.atacar(alvo); // Ataca o alvo
+        assertEquals(99, alvo.getVida()); // Vida do alvo deve ser reduzida em 1 (dano mínimo) devido à defesa maior que o ataque
+    }
+
+    @Test
+    public void atacarDeveMatarAlvo(){
+        Entidade alvo = new Entidade("Alvo", 5, 5, 5, 50, 1, Elemento.AEQUOR) {
+            // Implementação abstrata para permitir a criação de uma instância de Entidade
+        };
+        entidade.atacar(alvo); // Ataca o alvo
+        assertEquals(0, alvo.getVida()); // Vida do alvo deve ser reduzida a 0 (morto)
+        assertEquals(false, alvo.estaVivo()); // Alvo deve estar morto
+    }
 }

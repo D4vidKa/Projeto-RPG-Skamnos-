@@ -102,7 +102,20 @@ public abstract class Entidade {
 
     // Método para atacar outra entidade
     public void atacar(Entidade alvo){
-        // Lógica de ataque será implementada nas subclasses
+        // Lógica para calcular o dano causado ao alvo
+        int danoBase = (this.ataque - alvo.getDefesa());
+
+        if (alvo.getDefesa() > this.ataque) {
+            danoBase = 1; // Evita que o dano seja negativo
+        }
+        // Aplica o multiplicador de dano baseado nos elementos
+        danoBase = (int) (danoBase * Elemento.obterMultiplicador(this.getElementoAtaque(), alvo.getElemento()));
+
+        if (danoBase < 0) {
+            danoBase = 0; // Evita que o dano seja negativo
+        }
+        // Aplica o dano ao alvo
+        alvo.receberDano(danoBase);
     };
     
     // Método para receber dano
@@ -110,11 +123,12 @@ public abstract class Entidade {
         if (dano >= 0){
             this.setVida(this.getVida() - dano);
             if (this.getVida() < 0){
-                this.setVida(0);
+                this.setVida(0); // Evita que a vida seja negativa
             }
         } else {
             dano = 0; // Evita que o dano seja negativo
         }
+        
     };
 
     // Método para verificar se a entidade está viva
