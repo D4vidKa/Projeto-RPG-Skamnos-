@@ -164,4 +164,35 @@ public class Jogador extends Entidade{
         // Mensagem de parabéns ao jogador
         System.out.println(mensagemParabens());
     }
+
+    // Método para comprar um item, verificando o custo e atualizando o ouro do jogador
+    public boolean comprarItem(Item item) {
+        if (this.ouro >= item.getPreco()) {
+            this.ouro -= item.getPreco();
+            this.inventario.add(item);
+            System.out.println("Item " + item.getNome() + " comprado com sucesso! ");
+            return true; // Compra bem-sucedida
+        } else {
+            System.out.println("Ouro insuficiente para comprar " + item.getNome());
+            return false; // Ouro insuficiente para comprar o item
+        }
+    }
+
+    // Método para salvar o estado do jogador
+    // JogoSalvo ainda não implementado, mas a ideia é criar um objeto JogoSalvo que armazene todas as informações relevantes do jogador, como nível, etc.
+    /*public JogoSalvo salvarJogo() {
+        
+    }*/
+
+    // Método para carregar o estado do jogador a partir de um jogo salvo
+    /*public void carregarJogo(JogoSalvo save) {
+        
+    }*/
+
+    // Método para descansar e recuperar vida e mana
+    public void descansar() {
+        this.vida = this.vidaMaxima;
+        this.mana = this.manaMaxima;
+        System.out.println("Você descansa e sente-se completamente restaurado!");
+    }
 }

@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import com.skamnos.itens.listaItens.BencaoLuminar;
 import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.jogador.Jogador;
 
@@ -94,4 +95,32 @@ public class JogadorTeste {
         assertEquals(8, jogador.getManaMaxima()); // Mana máxima deve aumentar para 8 (6 + 2)
     }
 
+    @Test
+    // Teste para saber se o item é comprado corretamente
+    public void deveComprarItem(){
+        BencaoLuminar BencaoLuminar = new BencaoLuminar(); // Cria uma instância do item Bênção Luminar
+        jogador.ganharOuro(200); // Dá ao jogador ouro suficiente para comprar o
+        boolean comprado = jogador.comprarItem(BencaoLuminar); // Tenta comprar o item Bênção Luminar
+        assertEquals(true, comprado); // O item deve ser comprado com sucesso
+        assertEquals(0, jogador.getOuro()); // O ouro do jogador deve ser reduzido para 0 após a compra
+    }
+
+    @Test
+    // Teste para verificar que o jogador não pode comprar um item se não tiver ouro suficiente
+    public void naoDeveComprarItemSemOuroSuficiente(){
+        BencaoLuminar BencaoLuminar = new BencaoLuminar(); // Cria uma instância do item Bênção Luminar
+        boolean comprado = jogador.comprarItem(BencaoLuminar); // Tenta comprar o item Bênção Luminar sem ouro suficiente
+        assertEquals(false, comprado); // O item não deve ser comprado
+        assertEquals(0, jogador.getOuro()); // O ouro do jogador deve permanecer 0
+    }
+
+    @Test
+    // Teste para verificar se o jogador descansou corretamente
+    public void deveDescansar(){
+        jogador.setVida(30); // Define a vida do jogador para 30
+        jogador.setMana(3); // Define a mana do jogador para 3
+        jogador.descansar(); // O jogador descansa para recuperar vida e mana
+        assertEquals(jogador.getVidaMaxima(), jogador.getVida()); // A vida do jogador deve ser restaurada para o máximo
+        assertEquals(jogador.getManaMaxima(), jogador.getMana()); // A mana do jogador deve ser restaurada para o máximo
+    }
 }
