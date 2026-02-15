@@ -3,19 +3,31 @@ package com.skamnos.itens.cabeca;
 import com.skamnos.itens.equipamento.Equipamento;
 
 /*
- * Classe que representa um item de cabeça, que é um tipo de Equipamento.
+ * Interface que representa um item de cabeça, que é um tipo de Equipamento.
  */
-public class Cabeca extends Equipamento{
+public interface Cabeca extends Equipamento {
+    // Métodos específicos para itens de cabeça
     @Override
-    public String getNome() {
-        return "Cabeça";
-    }
+    String getNome();
+
     @Override
-    public int getPreco() {
-        return 0;
-    }
+    int getPreco();
+
     @Override
-    public String getDescricao() {
-        return "Equipamento para a cabeça do jogador.";
-    }
+    String getDescricao();
+
+    @Override
+    int getBonusVida();
+
+    @Override
+    int getBonusAtaque();
+
+    @Override
+    int getBonusDefesa();
+
+    @Override
+    int getBonusMana();
+
+    @Override
+    String getTipoArma();
 }

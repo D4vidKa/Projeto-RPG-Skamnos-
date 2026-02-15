@@ -1,11 +1,12 @@
 package com.skamnos.itens.listaItens;
+
 import com.skamnos.itens.consumiveis.Consumiveis;
 import com.skamnos.modelo.jogador.Jogador;
 
 /*
     Classe que representa a Bênção Luminar, um item consumível.
  */
-public class BencaoLuminar implements Consumiveis{
+public class BencaoLuminar implements Consumiveis {
     // Atributos do item
     private String nome = "Bênção Luminar";
     private int preco = 200;
@@ -17,7 +18,7 @@ public class BencaoLuminar implements Consumiveis{
             """;
 
     /*
-    Métodos implementados da interface Consumiveis
+     * Métodos implementados da interface Consumiveis
      */
     @Override
     public String getNome() {
@@ -35,7 +36,8 @@ public class BencaoLuminar implements Consumiveis{
     }
 
     @Override
+    // O efeito deve ser reviver o jogador com 100% da vida máxima.
     public void usar(Jogador alvo) {
-        
+
     }
 }

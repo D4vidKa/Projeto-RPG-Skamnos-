@@ -1,20 +1,38 @@
 package com.skamnos.itens.arma;
+
 import com.skamnos.itens.equipamento.Equipamento;
+import com.skamnos.modelo.elemento.Elemento;
 
 /*
- * Classe que representa uma Arma, que é um tipo de Equipamento.
+ * Interface que representa um item de arma, que é um tipo de Equipamento.
  */
-public class Arma extends Equipamento{
+public interface Arma extends Equipamento {
+    // Métodos específicos para armas
     @Override
-    public String getNome() {
-        return "Arma";
-    }
+    String getNome();
+
     @Override
-    public int getPreco() {
-        return 0;
-    }
+    int getPreco();
+
     @Override
-    public String getDescricao() {
-        return "Equipamento para a arma do jogador.";
-    }
+    String getDescricao();
+
+    @Override
+    int getBonusVida();
+
+    @Override
+    int getBonusAtaque();
+
+    @Override
+    int getBonusDefesa();
+
+    @Override
+    int getBonusMana();
+
+
+    @Override
+    String getTipoArma();
+
+    // Método para obter o elemento da arma, se aplicável
+    public Elemento getElementoItem();
 }

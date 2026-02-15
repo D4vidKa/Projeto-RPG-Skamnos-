@@ -1,18 +1,29 @@
 package com.skamnos.itens.equipamento;
-import com.skamnos.modelo.elemento.Elemento;
+
 import com.skamnos.itens.item.Item;
+
 /*
- * Classe abstrata que representa um Equipamento no jogo.
- * Equipamentos podem ser armas, armaduras ou outros itens que
- * fornecem bônus ao personagem.
+* Interface que representa um Equipamento, que é um tipo de Item.
  */
-public abstract class Equipamento implements Item {
-    private String nome;
-    private int preco;
-    private int bonusVida;
-    private int bonusAtaque;
-    private int bonusDefesa;
-    private int bonusMana;
-    private Elemento elementoItem;
-    
+public interface Equipamento extends Item {
+    // Métodos que todo equipamento deve implementar
+    @Override
+    String getNome();
+
+    @Override
+    int getPreco();
+
+    @Override
+    String getDescricao();
+
+    public abstract int getBonusVida();
+
+    public abstract int getBonusAtaque();
+
+    public abstract int getBonusDefesa();
+
+    public abstract int getBonusMana();
+
+    // Método para saber o tipo do equipamento (arma, armadura, etc.)
+    public abstract String getTipoArma();
 }

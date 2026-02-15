@@ -2,11 +2,12 @@ package com.skamnos.modelo.jogador;
 
 import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.entidade.Entidade;
+import com.skamnos.itens.equipamento.Equipamento;
 import com.skamnos.itens.item.Item;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Jogador extends Entidade{
+public class Jogador extends Entidade {
     // Atributos específicos do jogador
     protected int ouro;
     protected int experiencia;
@@ -17,7 +18,9 @@ public class Jogador extends Entidade{
     protected List<Item> inventario;
 
     // Construtor
-    public Jogador(String nome, int vidaMaxima, int ataque, int defesa, int manaMaxima, int nivel, Elemento elemento, int ouro, int experiencia, String ultimoCheckpoint, Item armaEquipada, Item cabecaEquipada, Item corpoEquipada, List<Item> inventario) {
+    public Jogador(String nome, int vidaMaxima, int ataque, int defesa, int manaMaxima, int nivel, Elemento elemento,
+            int ouro, int experiencia, String ultimoCheckpoint, Item armaEquipada, Item cabecaEquipada,
+            Item corpoEquipada, List<Item> inventario) {
         super(nome, vidaMaxima, ataque, defesa, manaMaxima, nivel, elemento);
         // Inicialização dos atributos específicos do jogador
         this.nome = "Jogador";
@@ -96,7 +99,8 @@ public class Jogador extends Entidade{
     }
 
     /*
-    Métodos específicos do jogador, como ganhar ouro, subir de nível, equipar itens, etc.
+     * Métodos específicos do jogador, como ganhar ouro, subir de nível, equipar
+     * itens, etc.
      */
 
     // Método para ganhar ouro
@@ -105,7 +109,7 @@ public class Jogador extends Entidade{
         if (quantidade < 0) {
             this.ouro -= quantidade; // Impede que o ouro seja negativo
         }
-        
+
     }
 
     // Método para ganhar experiência
@@ -114,29 +118,29 @@ public class Jogador extends Entidade{
         if (quantidade < 0) {
             this.experiencia -= quantidade; // Impede que a experiência seja negativa
         }
-        
-        if(this.experiencia >= 50) {
+
+        if (this.experiencia >= 50) {
             this.experiencia = 1; // Reseta a experiência ao subir de nível
             subirNivel();
         }
 
-        if (this.nivel == 50){
+        if (this.nivel == 50) {
             this.experiencia = 0; // Impede que a experiência seja acumulada após atingir o nível máximo
         }
 
-        if (this.nivel > 50){
+        if (this.nivel > 50) {
             this.nivel = 50; // Impede que o nível ultrapasse o máximo
         }
     }
 
     // Método para aplicar bônus de atributos ao subir de nível
-    public void aplicarBonusAtributos(int valor){
+    public void aplicarBonusAtributos(int valor) {
         this.vidaMaxima += 7;
         this.ataque += 3;
         this.defesa += 2;
         this.manaMaxima += 1;
         // Aplica bônus adicionais a cada 5 níveis
-        if (this.nivel % 5 == 0){
+        if (this.nivel % 5 == 0) {
             this.vidaMaxima += 10;
             this.ataque += 5;
             this.defesa += 3;
@@ -145,18 +149,18 @@ public class Jogador extends Entidade{
     }
 
     // Método para exibir mensagem de parabéns ao subir de nível
-    public String mensagemParabens(){
+    public String mensagemParabens() {
         return """
-        Parabéns! Você subiu para o nível """ + this.nivel + """
-        Vida máxima aumentada para """ + this.vidaMaxima + """
-        Ataque aumentado para """ + this.ataque + """
-        Defesa aumentada para """ + this.defesa + """
-        Mana máxima aumentada para """ + this.manaMaxima + """
+                Parabéns! Você subiu para o nível """ + this.nivel + """
+                Vida máxima aumentada para """ + this.vidaMaxima + """
+                Ataque aumentado para """ + this.ataque + """
+                Defesa aumentada para """ + this.defesa + """
+                Mana máxima aumentada para """ + this.manaMaxima + """
                 """;
     }
 
     // Método para subir de nível
-    public void subirNivel(){
+    public void subirNivel() {
         this.nivel++;
         aplicarBonusAtributos(this.nivel);
         this.vida = this.vidaMaxima; // Restaurar vida ao subir de nível
@@ -165,7 +169,8 @@ public class Jogador extends Entidade{
         System.out.println(mensagemParabens());
     }
 
-    // Método para comprar um item, verificando o custo e atualizando o ouro do jogador
+    // Método para comprar um item, verificando o custo e atualizando o ouro do
+    // jogador
     public boolean comprarItem(Item item) {
         if (this.ouro >= item.getPreco()) {
             this.ouro -= item.getPreco();
@@ -179,15 +184,20 @@ public class Jogador extends Entidade{
     }
 
     // Método para salvar o estado do jogador
-    // JogoSalvo ainda não implementado, mas a ideia é criar um objeto JogoSalvo que armazene todas as informações relevantes do jogador, como nível, etc.
-    /*public JogoSalvo salvarJogo() {
-        
-    }*/
+    // JogoSalvo ainda não implementado, mas a ideia é criar um objeto JogoSalvo que
+    // armazene todas as informações relevantes do jogador, como nível, etc.
+    /*
+     * public JogoSalvo salvarJogo() {
+     * 
+     * }
+     */
 
     // Método para carregar o estado do jogador a partir de um jogo salvo
-    /*public void carregarJogo(JogoSalvo save) {
-        
-    }*/
+    /*
+     * public void carregarJogo(JogoSalvo save) {
+     * 
+     * }
+     */
 
     // Método para descansar e recuperar vida e mana
     public void descansar() {
@@ -195,4 +205,45 @@ public class Jogador extends Entidade{
         this.mana = this.manaMaxima;
         System.out.println("Você descansa e sente-se completamente restaurado!");
     }
+
+    // Método para equipar um item, verificando se o item está no inventário e
+    public boolean equiparItem(Equipamento item) {
+        if (this.inventario.contains(item)) {
+            switch (item.getTipoArma()) {
+                case "Arma":
+                    this.armaEquipada = item;
+                    // atualizando os atributos do jogador
+                    this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
+                    this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
+                    this.defesa += item.getBonusDefesa(); // Aplica o bônus de defesa da arma equipada
+                    this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
+                    break;
+                case "Cabeça":
+                    this.cabecaEquipada = item;
+                    // atualizando os atributos do jogador
+                    this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
+                    this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
+                    this.defesa += item.getBonusDefesa(); // Aplica o bônus de defesa da arma equipada
+                    this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
+                    break;
+                case "Corpo":
+                    this.corpoEquipada = item;
+                    // atualizando os atributos do jogador
+                    this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
+                    this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
+                    this.defesa += item.getBonusDefesa(); // Aplica o bônus de defesa da arma equipada
+                    this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
+                    break;
+                default:
+                    System.out.println("Tipo de item desconhecido: " + item.getTipoArma());
+                    return false; // Tipo de item desconhecido
+            }
+            System.out.println("Item " + item.getNome() + " equipado com sucesso! ");
+            return true; // Item equipado com sucesso
+        } else {
+            System.out.println("Item " + item.getNome() + " não encontrado no inventário.");
+            return false; // Item não encontrado no inventário
+        }
+    }
+
 }

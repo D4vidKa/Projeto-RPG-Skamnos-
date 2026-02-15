@@ -1,22 +1,32 @@
 package com.skamnos.itens.corpo;
+
 import com.skamnos.itens.equipamento.Equipamento;
 
 /*
- * Classe que representa um item de corpo, que é um tipo de Equipamento.
+ * Interface que representa um item de corpo, que é um tipo de Equipamento.
  */
-public class Corpo extends Equipamento{
+public interface Corpo extends Equipamento {
     @Override
-    public String getNome() {
-        return "Corpo";
-    }
+    String getNome();
 
     @Override
-    public int getPreco() {
-        return 0;
-    }
+    int getPreco();
 
     @Override
-    public String getDescricao() {
-        return "Equipamento para o corpo do jogador.";
-    }
+    String getDescricao();
+
+    @Override
+    int getBonusVida();
+
+    @Override
+    int getBonusAtaque();
+
+    @Override
+    int getBonusDefesa();
+
+    @Override
+    int getBonusMana();
+
+    @Override
+    String getTipoArma();
 }
