@@ -35,11 +35,16 @@ public class MilagreDeHydrax implements Consumiveis {
     }
 
     @Override
+    // Método para usar o item, restaurando toda a vida do jogador
     public void usar(Jogador alvo) {
-        int valorCura = alvo.getVidaMaxima();
-        alvo.receberCura(valorCura);
-        System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
-    }
+        if (alvo.getVida() >= alvo.getVidaMaxima()) {
+            System.out.println(alvo.getNome() + " já está com a vida cheia., não é necessário usar " + nome + ".");
+            return;
+        } else {
+            alvo.restaurarVidaMaxima();
+            System.out.println(alvo.getNome() + " restaurou toda a vida usando " + nome + ".");
+        }
+    }   
 
     @Override
     public String toString() {

@@ -35,10 +35,16 @@ public class LagrimaDeHydrax implements Consumiveis {
     }
 
     @Override
+    // Método para usar o item, restaurando a vida do jogador
     public void usar(Jogador alvo) {
         int valorCura = 40;
-        alvo.receberCura(valorCura);
-        System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+        if (alvo.getVida() >= alvo.getVidaMaxima()) {
+            System.out.println(alvo.getNome() + " já está com a vida cheia., não é necessário usar " + nome + ".");
+            return;
+        } else {
+            alvo.receberCura(valorCura);
+            System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+        }
     }
 
     @Override

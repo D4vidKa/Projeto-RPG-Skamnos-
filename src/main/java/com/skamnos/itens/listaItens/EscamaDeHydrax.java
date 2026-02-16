@@ -1,4 +1,5 @@
 package com.skamnos.itens.listaItens;
+
 import com.skamnos.itens.consumiveis.Consumiveis;
 import com.skamnos.modelo.jogador.Jogador;
 
@@ -16,7 +17,7 @@ public class EscamaDeHydrax implements Consumiveis {
             """;
 
     /*
-    Métodos implementados da interface Consumiveis
+     * Métodos implementados da interface Consumiveis
      */
     @Override
     public String getNome() {
@@ -34,10 +35,16 @@ public class EscamaDeHydrax implements Consumiveis {
     }
 
     @Override
+    // Método para usar o item, restaurando a vida do jogador
     public void usar(Jogador alvo) {
         int valorCura = 20;
-        alvo.receberCura(valorCura);
-        System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+        if (alvo.getVida() >= alvo.getVidaMaxima()) {
+            System.out.println(alvo.getNome() + " já está com a vida cheia., não é necessário usar " + nome + ".");
+            return;
+        } else {
+            alvo.receberCura(valorCura);
+            System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+        }
     }
 
     @Override

@@ -1,4 +1,5 @@
 package com.skamnos.modelo.entidade;
+
 import com.skamnos.modelo.elemento.Elemento;
 
 public abstract class Entidade {
@@ -97,11 +98,11 @@ public abstract class Entidade {
     public void setElemento(Elemento elemento) {
         this.elemento = elemento;
     }
-    
+
     // Metodos abstratos para ações específicas das entidades
 
     // Método para atacar outra entidade
-    public void atacar(Entidade alvo){
+    public void atacar(Entidade alvo) {
         // Lógica para calcular o dano causado ao alvo
         int danoBase = (this.ataque - alvo.getDefesa());
 
@@ -117,23 +118,23 @@ public abstract class Entidade {
         // Aplica o dano ao alvo
         alvo.receberDano(danoBase);
     };
-    
+
     // Método para receber dano
-    public void receberDano(int dano){
-        if (dano >= 0){
+    public void receberDano(int dano) {
+        if (dano >= 0) {
             this.setVida(this.getVida() - dano);
-            if (this.getVida() < 0){
+            if (this.getVida() < 0) {
                 this.setVida(0); // Evita que a vida seja negativa
             }
         } else {
             dano = 0; // Evita que o dano seja negativo
         }
-        
+
     };
 
     // Método para verificar se a entidade está viva
-    public boolean estaVivo(){
-        if (this.getVida() > 0){
+    public boolean estaVivo() {
+        if (this.getVida() > 0) {
             return true;
         } else {
             return false;
@@ -141,10 +142,10 @@ public abstract class Entidade {
     };
 
     // Método para receber cura
-    public void receberCura(int valorCura){
-        if (valorCura >= 0){
+    public void receberCura(int valorCura) {
+        if (valorCura >= 0) {
             this.setVida(this.getVida() + valorCura);
-            if (this.getVida() > this.getVidaMaxima()){
+            if (this.getVida() >= this.getVidaMaxima()) {
                 this.setVida(this.getVidaMaxima());
             }
         } else {
@@ -152,19 +153,24 @@ public abstract class Entidade {
         }
     };
 
-    public void receberMana(int valorMana){
-        if (valorMana >= 0){
+    // Método para restaurar toda a vida
+    public void restaurarVidaMaxima() {
+        this.setVida(this.getVidaMaxima());
+    }
+
+    public void receberMana(int valorMana) {
+        if (valorMana >= 0) {
             this.setMana(this.getMana() + valorMana);
-            if (this.getMana() > this.getManaMaxima()){
+            if (this.getMana() > this.getManaMaxima()) {
                 this.setMana(this.getManaMaxima());
             }
         } else {
             valorMana = 0; // Evita que a mana seja negativa
         }
     };
-    
+
     // Método para obter o elemento de ataque da entidade
-    public Elemento getElementoAtaque(){
+    public Elemento getElementoAtaque() {
         return this.elemento;
     };
 }
