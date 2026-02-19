@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import com.skamnos.modelo.jogador.Jogador;
+import com.skamnos.modelo.elemento.Elemento;
 
 import com.skamnos.itens.listaItens.*;
 
@@ -35,4 +38,27 @@ public class BencaoLuminarTeste {
             """;
         assertEquals(descricaoEsperada, bencaoLuminar.getDescricao());
     }
+
+    @Test
+    public void deveUsarItemCorretamente() {
+            // Configura o jogador com vida reduzida
+            Jogador jogador = new Jogador("Teste", 50, 10, 7, 30, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
+                    null, new ArrayList<>());
+            // Configura o jogador como morto
+            jogador.setVida(0);
+            bencaoLuminar.usar(jogador);
+            assertEquals(50, jogador.getVida());
+    }
+
+    @Test
+    public void naoDeveReviverJogadorVivo() {
+        // Configura o jogador com vida reduzida
+        Jogador jogador = new Jogador("Teste", 50, 10, 7, 30, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
+                null, new ArrayList<>());
+        // Configura o jogador como vivo
+        jogador.setVida(25);
+        bencaoLuminar.usar(jogador);
+        assertEquals(25, jogador.getVida());
+    }
+    
 }

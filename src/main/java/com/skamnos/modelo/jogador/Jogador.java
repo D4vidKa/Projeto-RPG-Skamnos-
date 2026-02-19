@@ -27,9 +27,9 @@ public class Jogador extends Entidade {
         this.vidaMaxima = 50;
         this.vida = 50;
         this.ataque = 10;
-        this.defesa = 5;
-        this.manaMaxima = 5;
-        this.mana = 5;
+        this.defesa = 7;
+        this.manaMaxima = 8;
+        this.mana = 8;
         this.nivel = 1;
         this.elemento = Elemento.VITAS;
         this.ouro = 0;
@@ -246,4 +246,24 @@ public class Jogador extends Entidade {
         }
     }
 
+    // Método para exibir o status do jogador
+    public void exibirStatus() {
+        // Exibe o status do jogador, como nome, experiencia, nivel e ouro
+        System.out.println("\n--- STATUS DO JOGADOR ---");
+        System.out.println("Nome: " + this.nome + " | Nível: " + this.nivel);
+        System.out.println("Experiência: " + this.experiencia + "/50");
+        System.out.println("Ouro: " + this.ouro);
+        // Exibe os atributos do jogador, como vida, mana, ataque, defesa e elemento
+        System.out.println("\n[ Atributos ]");
+        System.out.println("Vida: " + this.vida + "/" + this.vidaMaxima);
+        System.out.println("Mana: " + this.mana + "/" + this.manaMaxima);
+        System.out.println("Ataque: " + this.ataque + " | Defesa: " + this.defesa);
+        System.out.println("Elemento: " + this.elemento);
+        // Exibe os equipamentos do jogador, como arma, cabeça e corpo
+        System.out.println("\n[ Equipamentos ]");
+        System.out.println("Arma: " + (armaEquipada != null ? armaEquipada.getNome() : "Nenhuma"));
+        System.out.println("Cabeça: " + (cabecaEquipada != null ? cabecaEquipada.getNome() : "Nenhuma"));
+        System.out.println("Corpo: " + (corpoEquipada != null ? corpoEquipada.getNome() : "Nenhuma"));
+        System.out.println("-------------------------\n");
+    }
 }

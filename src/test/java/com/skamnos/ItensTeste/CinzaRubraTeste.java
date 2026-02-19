@@ -4,6 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import java.util.ArrayList;
+import com.skamnos.modelo.jogador.Jogador;
+import com.skamnos.modelo.elemento.Elemento;
 
 import com.skamnos.itens.listaItens.*;
 
@@ -38,7 +41,34 @@ public class CinzaRubraTeste {
 
     @Test
     public void deveUsarItemCorretamente() {
-        // Este teste seria mais complexo, pois envolve a interação com a classe Jogador.
-        // Para um teste completo, seria necessário criar um mock ou uma instância de Jogador e verificar se a mana foi restaurada corretamente.
+         // Configura o jogador com vida reduzida
+        Jogador jogador = new Jogador("Teste", 50, 10, 7, 30, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
+                null, new ArrayList<>());
+        // Configura o jogador com mana reduzida
+        jogador.setMana(1);
+        cinzaRubra.usar(jogador);
+        assertEquals(11, jogador.getMana());
+    }
+
+    @Test
+    public void naoDeveExcederManaMaxima() {
+        // Configura o jogador com vida reduzida
+        Jogador jogador = new Jogador("Teste", 50, 10, 7, 30, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
+                null, new ArrayList<>());
+        // Configura o jogador com mana quase cheia
+        jogador.setMana(29);
+        cinzaRubra.usar(jogador);
+        assertEquals(30, jogador.getMana());
+    }
+
+    @Test
+    public void naoDeveRestaurarManaSeJaEstiverCheia() {
+        // Configura o jogador com vida reduzida
+        Jogador jogador = new Jogador("Teste", 50, 10, 7, 30, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
+                null, new ArrayList<>());
+        // Configura o jogador com mana cheia
+        jogador.setMana(30);
+        cinzaRubra.usar(jogador);
+        assertEquals(30, jogador.getMana());
     }
 }

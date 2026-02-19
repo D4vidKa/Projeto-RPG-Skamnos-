@@ -36,9 +36,13 @@ public class CinzaRubra implements Consumiveis {
 
     @Override
     public void usar(Jogador alvo) {
-        int valorMana = 10;
-        alvo.receberMana(valorMana);
-        System.out.println(alvo.getNome() + " restaurou " + valorMana + " pontos de mana usando " + nome + ".");
+        if (alvo.getMana() >= alvo.getManaMaxima()) {
+            System.out.println("Sua mana já está cheia. A Cinza Rubra não teve efeito.");
+        } else {
+            int manaRestaurada = 10;
+            alvo.setMana(Math.min(alvo.getMana() + manaRestaurada, alvo.getManaMaxima()));
+            System.out.println("Você usou a Cinza Rubra e recuperou " + manaRestaurada + " pontos de mana!");
+        }
     }
 
     @Override

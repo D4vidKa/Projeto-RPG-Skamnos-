@@ -38,6 +38,26 @@ public class BencaoLuminar implements Consumiveis {
     @Override
     // O efeito deve ser reviver o jogador com 100% da vida máxima.
     public void usar(Jogador alvo) {
+        if (alvo.estaVivo()) {
+            System.out.println("""
+                    A Benção Luminar permanece fria em suas mãos.
+                    A luz se recusa a brilhar para aqueles que ainda caminham sob o sol.
+                    """);
+        } else {
+            alvo.restaurarVidaMaxima();
+            System.out.println(
+                    """
+                            O frio do abismo começa a envolver sua consciência e o mundo desbota em cinzas...
+                            De repente, uma centelha dourada explode no centro do seu ser.
+                            Você sente o sangue ferver como metal líquido e o ar voltando aos pulmões como um rugido de tempestade.
+                            A Benção Luminar se desfaz em cinzas estelares enquanto sua alma é puxada de volta ao corpo.
+                            ---Você vive novamente!---
+                            """);
+        }
+    }
 
+    @Override
+    public String toString() {
+        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
     }
 }
