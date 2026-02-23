@@ -4,6 +4,10 @@ import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.entidade.Entidade;
 import com.skamnos.itens.equipamento.Equipamento;
 import com.skamnos.itens.item.Item;
+import com.skamnos.itens.arma.Arma;
+import com.skamnos.itens.cabeca.Cabeca;
+import com.skamnos.itens.corpo.Corpo;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -12,9 +16,9 @@ public class Jogador extends Entidade {
     protected int ouro;
     protected int experiencia;
     protected String ultimoCheckpoint;
-    protected Item armaEquipada;
-    protected Item cabecaEquipada;
-    protected Item corpoEquipada;
+    protected Arma armaEquipada;
+    protected Cabeca cabecaEquipada;
+    protected Corpo corpoEquipada;
     protected List<Item> inventario;
 
     // Construtor
@@ -23,18 +27,18 @@ public class Jogador extends Entidade {
             Item corpoEquipada, List<Item> inventario) {
         super(nome, vidaMaxima, ataque, defesa, manaMaxima, nivel, elemento);
         // Inicialização dos atributos específicos do jogador
-        this.nome = "Jogador";
-        this.vidaMaxima = 50;
-        this.vida = 50;
-        this.ataque = 10;
-        this.defesa = 7;
-        this.manaMaxima = 8;
-        this.mana = 8;
-        this.nivel = 1;
-        this.elemento = Elemento.VITAS;
-        this.ouro = 0;
-        this.experiencia = 1;
-        this.ultimoCheckpoint = "Início do Jogo";
+        this.nome = nome;
+        this.vidaMaxima = vidaMaxima;
+        this.vida = vidaMaxima;
+        this.ataque = ataque;
+        this.defesa = defesa;
+        this.manaMaxima = manaMaxima;
+        this.mana = manaMaxima;
+        this.nivel = nivel;
+        this.elemento = elemento;
+        this.ouro = ouro;
+        this.experiencia = experiencia;
+        this.ultimoCheckpoint = ultimoCheckpoint;
         this.armaEquipada = null;
         this.cabecaEquipada = null;
         this.corpoEquipada = null;
@@ -70,7 +74,7 @@ public class Jogador extends Entidade {
         return armaEquipada;
     }
 
-    public void setArmaEquipada(Item armaEquipada) {
+    public void setArmaEquipada(Arma armaEquipada) {
         this.armaEquipada = armaEquipada;
     }
 
@@ -78,7 +82,7 @@ public class Jogador extends Entidade {
         return cabecaEquipada;
     }
 
-    public void setCabecaEquipada(Item cabecaEquipada) {
+    public void setCabecaEquipada(Cabeca cabecaEquipada) {
         this.cabecaEquipada = cabecaEquipada;
     }
 
@@ -86,7 +90,7 @@ public class Jogador extends Entidade {
         return corpoEquipada;
     }
 
-    public void setCorpoEquipada(Item corpoEquipada) {
+    public void setCorpoEquipada(Corpo corpoEquipada) {
         this.corpoEquipada = corpoEquipada;
     }
 
@@ -135,13 +139,13 @@ public class Jogador extends Entidade {
 
     // Método para aplicar bônus de atributos ao subir de nível
     public void aplicarBonusAtributos(int valor) {
-        this.vidaMaxima += 7;
+        this.vidaMaxima += 5;
         this.ataque += 3;
         this.defesa += 2;
         this.manaMaxima += 1;
         // Aplica bônus adicionais a cada 5 níveis
         if (this.nivel % 5 == 0) {
-            this.vidaMaxima += 10;
+            this.vidaMaxima += 7;
             this.ataque += 5;
             this.defesa += 3;
             this.manaMaxima += 2;
@@ -206,20 +210,20 @@ public class Jogador extends Entidade {
         System.out.println("Você descansa e sente-se completamente restaurado!");
     }
 
-    // Método para equipar um item, verificando se o item está no inventário e
+    // Método para equipar um item, verificando se o item está no inventário e atualizando os atributos do jogador
     public boolean equiparItem(Equipamento item) {
         if (this.inventario.contains(item)) {
             switch (item.getTipoArma()) {
                 case "Arma":
-                    this.armaEquipada = item;
-                    // atualizando os atributos do jogador
+                    // Equipar a arma e atualizar os atributos do jogador
+                    this.armaEquipada = Arma.class.cast(item);
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
                     this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
                     this.defesa += item.getBonusDefesa(); // Aplica o bônus de defesa da arma equipada
                     this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
                     break;
                 case "Cabeça":
-                    this.cabecaEquipada = item;
+                    this.cabecaEquipada = Cabeca.class.cast(item);
                     // atualizando os atributos do jogador
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
                     this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
@@ -227,7 +231,7 @@ public class Jogador extends Entidade {
                     this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
                     break;
                 case "Corpo":
-                    this.corpoEquipada = item;
+                    this.corpoEquipada = Corpo.class.cast(item);
                     // atualizando os atributos do jogador
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
                     this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
@@ -243,6 +247,39 @@ public class Jogador extends Entidade {
         } else {
             System.out.println("Item " + item.getNome() + " não encontrado no inventário.");
             return false; // Item não encontrado no inventário
+        }
+    }
+
+    // Método para desequipar um item, verificando se o item está equipado e
+    // atualizando os atributos do jogador
+    public boolean desequiparItem(Equipamento item) {
+        if (item.equals(this.armaEquipada)) {
+            this.vidaMaxima -= item.getBonusVida(); // Remove o bônus de vida da arma desequipada
+            this.ataque -= item.getBonusAtaque(); // Remove o bônus de ataque da arma desequipada
+            this.defesa -= item.getBonusDefesa(); // Remove o bônus de defesa da arma desequipada
+            this.mana -= item.getBonusMana(); // Remove o bônus de mana da arma desequipada
+            this.armaEquipada = null;
+            System.out.println("Item " + item.getNome() + " desequipado com sucesso! ");
+            return true; // Item desequipado com sucesso
+        } else if (item.equals(this.cabecaEquipada)) {
+            this.vidaMaxima -= item.getBonusVida(); // Remove o bônus de vida do equipamento de cabeça desequipado
+            this.ataque -= item.getBonusAtaque(); // Remove o bônus de ataque do equipamento de cabeça desequipado
+            this.defesa -= item.getBonusDefesa(); // Remove o bônus de defesa do equipamento de cabeça desequipado
+            this.mana -= item.getBonusMana(); // Remove o bônus de mana do equipamento de cabeça desequipado
+            this.cabecaEquipada = null;
+            System.out.println("Item " + item.getNome() + " desequipado com sucesso! ");
+            return true; // Item desequipado com sucesso
+        } else if (item.equals(this.corpoEquipada)) {
+            this.vidaMaxima -= item.getBonusVida(); // Remove o bônus de vida do equipamento de corpo desequipado
+            this.ataque -= item.getBonusAtaque(); // Remove o bônus de ataque do equipamento de corpo desequipado
+            this.defesa -= item.getBonusDefesa(); // Remove o bônus de defesa do equipamento de corpo desequipado
+            this.mana -= item.getBonusMana(); // Remove o bônus de mana do equipamento de corpo desequipado
+            this.corpoEquipada = null;
+            System.out.println("Item " + item.getNome() + " desequipado com sucesso! ");
+            return true; // Item desequipado com sucesso
+        } else {
+            System.out.println("Item " + item.getNome() + " não está equipado.");
+            return false; // Item não está equipado
         }
     }
 

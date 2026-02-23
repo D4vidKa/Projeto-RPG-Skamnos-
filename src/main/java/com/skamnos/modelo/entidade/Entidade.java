@@ -53,6 +53,7 @@ public abstract class Entidade {
 
     public int getAtaque() {
         return ataque;
+        
     }
 
     public void setAtaque(int ataque) {

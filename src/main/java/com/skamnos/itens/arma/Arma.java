@@ -29,7 +29,6 @@ public interface Arma extends Equipamento {
     @Override
     int getBonusMana();
 
-
     @Override
     String getTipoArma();
 

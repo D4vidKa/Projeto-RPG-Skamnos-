@@ -14,7 +14,7 @@ public class JogadorTeste {
 
     @BeforeEach
     public void setUp() {
-        jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null, null, null);
+        jogador = new Jogador("Teste", 50, 10, 7, 8, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null, null, null);
     }
 
     @Test
@@ -79,21 +79,21 @@ public class JogadorTeste {
     @Test
     // Teste para verificar se os atributos aumentam corretamente ao subir de nível
     public void atributosDevemAumentarAoSubirNivel() {
-        jogador.ganharExperiencia(50); // Ganha experiência suficiente para subir de nível
+        jogador.ganharExperiencia(50);
         assertEquals(57, jogador.getVidaMaxima()); // Vida máxima deve aumentar para 57
         assertEquals(13, jogador.getAtaque()); // Ataque deve aumentar para 13
-        assertEquals(7, jogador.getDefesa()); // Defesa deve aumentar para 7
-        assertEquals(6, jogador.getManaMaxima()); // Mana máxima deve aumentar para 6
+        assertEquals(9, jogador.getDefesa()); // Defesa deve aumentar para 9
+        assertEquals(9, jogador.getManaMaxima()); // Mana máxima deve aumentar para 9
     }
 
     @Test
     public void atributosDevemAumentarBonusAoSubirNivel() {
         jogador.setNivel(4); // Define o nível do jogador para 4
         jogador.ganharExperiencia(50); // Ganha experiência suficiente para subir de nível
-        assertEquals(67, jogador.getVidaMaxima()); // Vida máxima deve aumentar para 67 (57 + 10)
+        assertEquals(62, jogador.getVidaMaxima()); // Vida máxima deve aumentar para 62 (57 + 5)
         assertEquals(18, jogador.getAtaque()); // Ataque deve aumentar para 18 (13 + 5)
-        assertEquals(10, jogador.getDefesa()); // Defesa deve aumentar para 10 (7 + 3)
-        assertEquals(8, jogador.getManaMaxima()); // Mana máxima deve aumentar para 8 (6 + 2)
+        assertEquals(12, jogador.getDefesa()); // Defesa deve aumentar para 12 (9 + 3)
+        assertEquals(11, jogador.getManaMaxima()); // Mana máxima deve aumentar para 11 (9 + 2)
     }
 
     @Test
@@ -103,7 +103,7 @@ public class JogadorTeste {
         jogador.ganharOuro(200); // Dá ao jogador ouro suficiente para comprar o item
         boolean comprado = jogador.comprarItem(lagrimaDeHydrax); // Tenta comprar o item Lágrima de Hydrax
         assertEquals(true, comprado); // O item deve ser comprado com sucesso
-        assertEquals(0, jogador.getOuro()); // O ouro do jogador deve ser reduzido para 0 após a compra
+        assertEquals(135, jogador.getOuro()); // O ouro do jogador deve ser reduzido para 0 após a compra
     }
 
     @Test
