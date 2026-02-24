@@ -3,24 +3,24 @@ package com.skamnos.itens.listaEquipamentos;
 import com.skamnos.itens.arma.Arma;
 import com.skamnos.modelo.elemento.Elemento;
 
-public class OVeredito implements Arma {
+public class FenixEncarnada implements Arma{
     @Override
     public String getNome() {
-        return "O Veredito";
+        return "Fênix Encarnada";
     }
 
     @Override
     public String getDescricao() {
         return """
-                Forjados em Aço Sombral pelos Mestres de Engenharia a mando do Sindicato, estes machados são a extensão da vontade do Conselho de Ouro.
-                Nas mãos de um Executor, a lâmina não apenas corta; ela encerra disputas com uma finalidade absoluta.
-                Dizem que o peso do metal é proporcional à dívida de quem o enfrenta, separando carne e osso com a precisão de um contrato sendo selado.
+                Empunhar esta lâmina é um teste de vontade; o calor que emana do punho faz os braços do usuário parecerem derreter em magma vivo. 
+                Forjada com Aço Sombral imbuído com Ignis nas entranhas do vulcão no Pico da Ascensão, a Fênix Encarnada é uma arma senciente que não tolera a hesitação. 
+                Ela exige um tributo de dor: aqueles que tentam usurpar seu poder sem a devida força são instantaneamente consumidos, transformados em cinzas pela fúria de Pyrothos.
                 """;
     }
 
     @Override
     public int getPreco() {
-        return 80;
+        return 100;
     }
 
     @Override
@@ -30,7 +30,7 @@ public class OVeredito implements Arma {
 
     @Override
     public int getBonusAtaque() {
-        return 20;
+        return 30;
     }
 
     @Override
@@ -45,11 +45,11 @@ public class OVeredito implements Arma {
 
     @Override
     public int getBonusMana() {
-        return 10;
+        return 5;
     }
 
     @Override
     public Elemento getElementoItem() {
-        return Elemento.TELLUS;
+        return Elemento.IGNIS;
     }
 }

@@ -216,6 +216,10 @@ public class Jogador extends Entidade {
             switch (item.getTipoArma()) {
                 case "Arma":
                     // Equipar a arma e atualizar os atributos do jogador
+                    if (this.armaEquipada != null) {
+                        // Se já houver uma arma equipada, desequipá-la antes de equipar a nova
+                        desequiparItem(this.armaEquipada);
+                    }
                     this.armaEquipada = Arma.class.cast(item);
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
                     this.ataque += item.getBonusAtaque(); // Aplica o bônus de ataque da arma equipada
@@ -223,6 +227,10 @@ public class Jogador extends Entidade {
                     this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
                     break;
                 case "Cabeça":
+                    if (this.cabecaEquipada != null) {
+                        // Se já houver um equipamento de cabeça equipado, desequipá-lo antes de equipar o novo
+                        desequiparItem(this.cabecaEquipada);
+                    }
                     this.cabecaEquipada = Cabeca.class.cast(item);
                     // atualizando os atributos do jogador
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada
@@ -231,6 +239,10 @@ public class Jogador extends Entidade {
                     this.mana += item.getBonusMana(); // Aplica o bônus de mana da arma equipada
                     break;
                 case "Corpo":
+                    if (this.corpoEquipada != null) {
+                        // Se já houver um equipamento de corpo equipado, desequipá-lo antes de equipar o novo
+                        desequiparItem(this.corpoEquipada);
+                    }
                     this.corpoEquipada = Corpo.class.cast(item);
                     // atualizando os atributos do jogador
                     this.vidaMaxima += item.getBonusVida(); // Aplica o bônus de vida da arma equipada

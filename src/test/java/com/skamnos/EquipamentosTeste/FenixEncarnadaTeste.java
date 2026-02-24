@@ -9,51 +9,51 @@ import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.itens.listaEquipamentos.*;
 
-public class OVereditoTeste {
-    private OVeredito oVeredito;
+public class FenixEncarnadaTeste {
+    private FenixEncarnada fenixEncarnada;
 
     @BeforeEach
     public void setUp() {
-        oVeredito = new OVeredito();
+        fenixEncarnada = new FenixEncarnada();
     }
 
     @Test
     public void deveTerNomeCorreto() {
-        assertEquals("O Veredito", oVeredito.getNome());
+        assertEquals("Fênix Encarnada", fenixEncarnada.getNome());
     }
 
     @Test
     public void deveTerPrecoCorreto() {
-        assertEquals(80, oVeredito.getPreco());
+        assertEquals(100, fenixEncarnada.getPreco());
     }
 
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-                Forjados em Aço Sombral pelos Mestres de Engenharia a mando do Sindicato, estes machados são a extensão da vontade do Conselho de Ouro.
-                Nas mãos de um Executor, a lâmina não apenas corta; ela encerra disputas com uma finalidade absoluta.
-                Dizem que o peso do metal é proporcional à dívida de quem o enfrenta, separando carne e osso com a precisão de um contrato sendo selado.
+                Empunhar esta lâmina é um teste de vontade; o calor que emana do punho faz os braços do usuário parecerem derreter em magma vivo. 
+                Forjada com Aço Sombral imbuído com Ignis nas entranhas do vulcão no Pico da Ascensão, a Fênix Encarnada é uma arma senciente que não tolera a hesitação. 
+                Ela exige um tributo de dor: aqueles que tentam usurpar seu poder sem a devida força são instantaneamente consumidos, transformados em cinzas pela fúria de Pyrothos.
                 """;
-        assertEquals(descricaoEsperada, oVeredito.getDescricao());
+        assertEquals(descricaoEsperada, fenixEncarnada.getDescricao());
     }
 
     @Test
     public void deveTerTipoArmaCorreto() {
-        assertEquals("Arma", oVeredito.getTipoArma());
+        assertEquals("Arma", fenixEncarnada.getTipoArma());
     }
 
     @Test
     // Testa os bônus de ataque, vida, defesa e mana
     public void deveTerBonusCorretos() {
-        assertEquals(20, oVeredito.getBonusAtaque());
-        assertEquals(0, oVeredito.getBonusVida());
-        assertEquals(0, oVeredito.getBonusDefesa());
-        assertEquals(10, oVeredito.getBonusMana());
+        assertEquals(30, fenixEncarnada.getBonusAtaque());
+        assertEquals(0, fenixEncarnada.getBonusVida());
+        assertEquals(0, fenixEncarnada.getBonusDefesa());
+        assertEquals(5, fenixEncarnada.getBonusMana());
     }
 
     @Test
     public void deveTerElementoCorreto() {
-        assertEquals(Elemento.TELLUS, oVeredito.getElementoItem());
+        assertEquals(Elemento.IGNIS, fenixEncarnada.getElementoItem());
     }
 
     @Test
@@ -62,14 +62,14 @@ public class OVereditoTeste {
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
                 null, new ArrayList<>());
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(oVeredito);
+        jogador.getInventario().add(fenixEncarnada);
         // Simula o uso do equipamento
-        jogador.equiparItem(oVeredito);
+        jogador.equiparItem(fenixEncarnada);
         // Verifica os bônus aplicados
-        assertEquals(30, jogador.getAtaque()); // 10 base + 20 do equipamento
+        assertEquals(40, jogador.getAtaque()); // 10 base + 30 do equipamento
         assertEquals(100, jogador.getVida()); // Sem bônus de vida
         assertEquals(5, jogador.getDefesa()); // Sem bônus de defesa
-        assertEquals(30, jogador.getMana()); // 20 base + 10 do equipamento
+        assertEquals(25, jogador.getMana()); // 20 base + 5 do equipamento
     }
 
     @Test
@@ -78,11 +78,11 @@ public class OVereditoTeste {
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
                 null, new ArrayList<>());
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(oVeredito);
+        jogador.getInventario().add(fenixEncarnada);
         // Simula o uso do equipamento
-        jogador.equiparItem(oVeredito);
+        jogador.equiparItem(fenixEncarnada);
         // Simula a desequipagem do equipamento
-        jogador.desequiparItem(oVeredito);
+        jogador.desequiparItem(fenixEncarnada);
         // Verifica os bônus removidos
         assertEquals(10, jogador.getAtaque()); // Volta ao valor base
         assertEquals(100, jogador.getVida()); // Sem bônus de vida
@@ -95,10 +95,13 @@ public class OVereditoTeste {
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
                 null, new ArrayList<>());
-        // Tenta equipar o item sem tê-lo no inventário
-        boolean resultado = jogador.equiparItem(oVeredito);
-        // Verifica que o equipamento não foi equipado
-        assertEquals(false, resultado);
+        // Tenta equipar o item sem adicioná-lo ao inventário
+        jogador.equiparItem(fenixEncarnada);
+        // Verifica que os bônus não foram aplicados
+        assertEquals(10, jogador.getAtaque()); // Valor base
+        assertEquals(100, jogador.getVida()); // Sem bônus de vida
+        assertEquals(5, jogador.getDefesa()); // Sem bônus de defesa
+        assertEquals(20, jogador.getMana()); // Valor base
     }
 
     @Test
@@ -107,7 +110,7 @@ public class OVereditoTeste {
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
                 null, new ArrayList<>());
         // Tenta desequipar o item sem tê-lo equipado
-        boolean resultado = jogador.desequiparItem(oVeredito);
+        boolean resultado = jogador.desequiparItem(fenixEncarnada);
         // Verifica que o equipamento não foi desequipado
         assertEquals(false, resultado);
     }
@@ -119,12 +122,12 @@ public class OVereditoTeste {
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 100, 1, "Início do Jogo", null, null,
                 null, new ArrayList<>());
         // Simula a compra do equipamento
-        boolean resultado = jogador.comprarItem(oVeredito);
+        boolean resultado = jogador.comprarItem(fenixEncarnada);
         // Verifica que o equipamento foi comprado e adicionado ao inventário
         assertEquals(true, resultado);
         assertEquals(1, jogador.getInventario().size());
-        assertEquals(oVeredito, jogador.getInventario().get(0));
+        assertEquals(fenixEncarnada, jogador.getInventario().get(0));
         // Verifica que o dinheiro foi descontado
-        assertEquals(20, jogador.getOuro()); // 100 - 80 do equipamento
+        assertEquals(0, jogador.getOuro()); // 100 - 100 do equipamento
     }
 }
