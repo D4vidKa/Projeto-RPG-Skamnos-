@@ -30,4 +30,7 @@ public interface Cabeca extends Equipamento {
 
     @Override
     String getTipoArma();
+
+    @Override
+    String toString();
 }

@@ -7,31 +7,30 @@ import com.skamnos.modelo.jogador.Jogador;
  * Classe que representa a Lágrima de Hydrax, um item consumível que restaura vida.
  */
 public class LagrimaDeHydrax implements Consumiveis {
-    // Atributos do item
-    private String nome = "Lágrima de Hydrax";
-    private int preco = 65;
-    private String descricao = """
-            Efeito: ---Recupera 40 Pontos de Vida---
-            Uma versão aprimorada da escama comum, também criada por Silas.
-            Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.
-            """;
-
     /*
      * Métodos implementados da interface Consumiveis
      */
     @Override
     public String getNome() {
-        return nome;
+        return "Lágrima de Hydrax";
     }
 
     @Override
     public int getPreco() {
-        return preco;
+        return 65;
     }
 
     @Override
     public String getDescricao() {
-        return descricao;
+        return """
+                Uma versão aprimorada da escama comum, também criada por Silas.
+                Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.
+                """;
+    }
+
+    @Override
+    public String getEfeitoDescrição() {
+        return "Recupera 40 Pontos de Vida";
     }
 
     @Override
@@ -39,16 +38,24 @@ public class LagrimaDeHydrax implements Consumiveis {
     public void usar(Jogador alvo) {
         int valorCura = 40;
         if (alvo.getVida() >= alvo.getVidaMaxima()) {
-            System.out.println(alvo.getNome() + " já está com a vida cheia., não é necessário usar " + nome + ".");
+            System.out.println(
+                    alvo.getNome() + " já está com a vida cheia., não é necessário usar " + this.getNome() + ".");
             return;
         } else {
             alvo.receberCura(valorCura);
-            System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + nome + ".");
+            System.out.println(
+                    alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + this.getNome() + ".");
         }
     }
 
     @Override
     public String toString() {
-        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
+        return String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                this.getNome(), this.getPreco(), this.getDescricao(), this.getEfeitoDescrição());
     }
 }

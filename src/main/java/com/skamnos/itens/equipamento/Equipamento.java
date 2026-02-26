@@ -15,6 +15,9 @@ public interface Equipamento extends Item {
 
     @Override
     String getDescricao();
+    
+    @Override
+    String toString();
 
     public abstract int getBonusVida();
 

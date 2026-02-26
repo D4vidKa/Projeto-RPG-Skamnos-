@@ -31,11 +31,16 @@ public class MilagreDeHydraxTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-                Efeito: ---Recupera toda a Vida---
                 A obra-prima de Silas que o fez virar um dos grandes Magister do Conclave, criada em colaboração com outros discípulos após anos de desenvolvimento.
                 Esta poção foi desenvolvida a pedido da Mestra-Oráculo Lyra para fortalecer seus espiões em missões de extremo risco, sendo capaz de recuperar toda a vitalidade de uma pessoa.
                 """;
         assertEquals(descricaoEsperada, milagreDeHydrax.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        String efeitoDescricaoEsperada = "Recupera toda a vida";
+        assertEquals(efeitoDescricaoEsperada, milagreDeHydrax.getEfeitoDescrição());
     }
 
     @Test
@@ -52,7 +57,8 @@ public class MilagreDeHydraxTeste {
     }
 
     @Test
-    // Teste para garantir que o item não seja usado quando a vida do jogador já estiver cheia
+    // Teste para garantir que o item não seja usado quando a vida do jogador já
+    // estiver cheia
     public void naoDeveUsarQuandoVidaCheia() {
         // Criar um jogador com vida cheia
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
@@ -64,5 +70,18 @@ public class MilagreDeHydraxTeste {
 
         // Verificar se a vida permanece inalterada
         assertEquals(50, jogador.getVida());
+    }
+
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                milagreDeHydrax.getNome(), milagreDeHydrax.getPreco(), milagreDeHydrax.getDescricao(),
+                milagreDeHydrax.getEfeitoDescrição());
+        assertEquals(toStringEsperado, milagreDeHydrax.toString());
     }
 }

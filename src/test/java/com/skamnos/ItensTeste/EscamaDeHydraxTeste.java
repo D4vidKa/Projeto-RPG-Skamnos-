@@ -30,11 +30,16 @@ public class EscamaDeHydraxTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-                Efeito: ---Recupera 20 Pontos de Vida---
                 Uma poção capaz de recuperar uma pequena parte da vida do usuário.
                 Foi criada por Silas um Discipulus do Conclave das Correntes há 200 anos.
                 """;
         assertEquals(descricaoEsperada, escamaDeHydrax.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        String efeitoDescricaoEsperada = "Recupera 20 Pontos de Vida";
+        assertEquals(efeitoDescricaoEsperada, escamaDeHydrax.getEfeitoDescrição());
     }
 
     @Test
@@ -77,5 +82,18 @@ public class EscamaDeHydraxTeste {
         escamaDeHydrax.usar(jogador);
         // Verifica se a vida permanece inalterada
         assertEquals(50, jogador.getVida());
+    }
+
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                escamaDeHydrax.getNome(), escamaDeHydrax.getPreco(), escamaDeHydrax.getDescricao(),
+                escamaDeHydrax.getEfeitoDescrição());
+        assertEquals(toStringEsperado, escamaDeHydrax.toString());
     }
 }

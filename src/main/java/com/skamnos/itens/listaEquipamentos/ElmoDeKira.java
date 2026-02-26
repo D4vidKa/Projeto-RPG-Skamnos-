@@ -1,56 +1,51 @@
 package com.skamnos.itens.listaEquipamentos;
 
-import com.skamnos.itens.arma.Arma;
-import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.itens.cabeca.Cabeca;
 
-public class OVeredito implements Arma {
+public class ElmoDeKira implements Cabeca {
     @Override
     public String getNome() {
-        return "O Veredito";
+        return "Elmo de Kira";
     }
 
     @Override
     public String getDescricao() {
         return """
-                Forjados em Aço Sombral pelos Mestres de Engenharia a mando do Sindicato, estes machados são a extensão da vontade do Conselho de Ouro.
-                Nas mãos de um Executor, a lâmina não apenas corta; ela encerra disputas com uma finalidade absoluta.
-                Dizem que o peso do metal é proporcional à dívida de quem o enfrenta, separando carne e osso com a precisão de um contrato sendo selado.
+                Um elmo de aço fosco, marcado por cicatrizes de um combate antigo.
+                Ele pertenceu a Kira, uma Inceptora que tombou durante a sangrenta Guerra Civil da Grande Forja.
+                Enquanto os nomes dos generais foram gravados em ouro pelo Sindicato, o de Kira foi levado pelo vento.
+                Este elmo é o único fragmento que impede que sua existência seja totalmente devorada pelo tempo — um peso silencioso sobre a cabeça de quem o usa.
                 """;
     }
 
     @Override
     public int getPreco() {
-        return 80;
+        return 50;
     }
 
     @Override
     public String getTipoArma() {
-        return "Arma";
+        return "Cabeça";
     }
 
     @Override
     public int getBonusAtaque() {
-        return 20;
+        return 0;
     }
 
     @Override
     public int getBonusVida() {
-        return 0;
+        return 20;
     }
 
     @Override
     public int getBonusDefesa() {
-        return 0;
+        return 20;
     }
 
     @Override
     public int getBonusMana() {
-        return 10;
-    }
-
-    @Override
-    public Elemento getElementoItem() {
-        return Elemento.TELLUS;
+        return 0;
     }
 
     @Override
@@ -60,8 +55,6 @@ public class OVeredito implements Arma {
         sb.append(String.format(" %-15s | TIPO: %s\n", getNome().toUpperCase(), getTipoArma()));
         sb.append("==========================================\n");
         sb.append(" Descrição: ").append(getDescricao()).append("\n");
-        sb.append("------------------------------------------\n");
-        sb.append(" ELEMENTO: ").append(getElementoItem()).append("\n");
         sb.append("------------------------------------------\n");
         sb.append(" BÔNUS DO EQUIPAMENTO:\n");
 

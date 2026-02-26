@@ -12,7 +12,7 @@ import com.skamnos.itens.listaItens.*;
 
 public class LagrimaDeHydraxTeste {
     private LagrimaDeHydrax lagrimaDeHydrax;
-    
+
     @BeforeEach
     public void setUp() {
         lagrimaDeHydrax = new LagrimaDeHydrax();
@@ -31,11 +31,16 @@ public class LagrimaDeHydraxTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-            Efeito: ---Recupera 40 Pontos de Vida---
-            Uma versão aprimorada da escama comum, também criada por Silas.
-            Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.
-            """;
+                Uma versão aprimorada da escama comum, também criada por Silas.
+                Após uma revolta no Arquipélago de Nereza onde várias pessoas morreram, Silas viu a necessidade de aprimorar sua criação.
+                """;
         assertEquals(descricaoEsperada, lagrimaDeHydrax.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        String efeitoDescricaoEsperada = "Recupera 40 Pontos de Vida";
+        assertEquals(efeitoDescricaoEsperada, lagrimaDeHydrax.getEfeitoDescrição());
     }
 
     @Test
@@ -78,5 +83,18 @@ public class LagrimaDeHydraxTeste {
         lagrimaDeHydrax.usar(jogador);
         // Verifica se a vida permanece a mesma (50)
         assertEquals(50, jogador.getVida());
+    }
+
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                lagrimaDeHydrax.getNome(), lagrimaDeHydrax.getPreco(), lagrimaDeHydrax.getDescricao(),
+                lagrimaDeHydrax.getEfeitoDescrição());
+        assertEquals(toStringEsperado, lagrimaDeHydrax.toString());
     }
 }

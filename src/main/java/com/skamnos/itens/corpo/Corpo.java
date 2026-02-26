@@ -29,4 +29,7 @@ public interface Corpo extends Equipamento {
 
     @Override
     String getTipoArma();
+
+    @Override
+    String toString();
 }

@@ -1,56 +1,52 @@
 package com.skamnos.itens.listaEquipamentos;
 
-import com.skamnos.itens.arma.Arma;
-import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.itens.cabeca.Cabeca;
 
-public class OVeredito implements Arma {
+public class MascaraEterna implements Cabeca{
+
     @Override
     public String getNome() {
-        return "O Veredito";
+        return "Máscara Eterna";
     }
 
     @Override
     public String getDescricao() {
         return """
-                Forjados em Aço Sombral pelos Mestres de Engenharia a mando do Sindicato, estes machados são a extensão da vontade do Conselho de Ouro.
-                Nas mãos de um Executor, a lâmina não apenas corta; ela encerra disputas com uma finalidade absoluta.
-                Dizem que o peso do metal é proporcional à dívida de quem o enfrenta, separando carne e osso com a precisão de um contrato sendo selado.
+                Uma relíquia de um tempo cujas crônicas foram perdidas.
+                Forjada em um metal translúcido que desafia a metalurgia moderna, esta máscara reflete a luz e o calor com a intensidade do próprio sol. 
+                Desenterrada das camadas mais profundas do Pico da Ascensão, ela emana uma aura de autoridade primordial. 
+                Os Magisters do Conclave estimam que o artefato date de mais de 2500 anos.
                 """;
     }
 
     @Override
     public int getPreco() {
-        return 80;
+        return 75;
     }
 
     @Override
     public String getTipoArma() {
-        return "Arma";
+        return "Cabeça";
     }
 
     @Override
     public int getBonusAtaque() {
-        return 20;
+        return 0;
     }
 
     @Override
     public int getBonusVida() {
-        return 0;
+        return 20;
     }
 
     @Override
     public int getBonusDefesa() {
-        return 0;
+        return 30;
     }
 
     @Override
     public int getBonusMana() {
-        return 10;
-    }
-
-    @Override
-    public Elemento getElementoItem() {
-        return Elemento.TELLUS;
+        return 0;
     }
 
     @Override
@@ -60,8 +56,6 @@ public class OVeredito implements Arma {
         sb.append(String.format(" %-15s | TIPO: %s\n", getNome().toUpperCase(), getTipoArma()));
         sb.append("==========================================\n");
         sb.append(" Descrição: ").append(getDescricao()).append("\n");
-        sb.append("------------------------------------------\n");
-        sb.append(" ELEMENTO: ").append(getElementoItem()).append("\n");
         sb.append("------------------------------------------\n");
         sb.append(" BÔNUS DO EQUIPAMENTO:\n");
 

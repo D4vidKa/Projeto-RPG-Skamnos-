@@ -7,32 +7,31 @@ import com.skamnos.modelo.jogador.Jogador;
     Classe que representa a Bênção Luminar, um item consumível.
  */
 public class BencaoLuminar implements Consumiveis {
-    // Atributos do item
-    private String nome = "Bênção Luminar";
-    private int preco = 200;
-    private String descricao = """
-            Efeito: ---???---
-            Muitos acreditam ser apenas um mito inventado por desesperados, mas para a Cúpula dos Absolutos, é uma ameaça real o suficiente para justificar massacres.
-            Não é apenas um item; é uma âncora para aqueles que têm uma tarefa inacabada com a vida.
-            A Igreja do Sol Poente protege estas poucas raridades com o próprio sangue, esperando pelo momento em que a 'pessoa certa' precisará recusar o fim.
-            """;
-
     /*
      * Métodos implementados da interface Consumiveis
      */
     @Override
     public String getNome() {
-        return nome;
+        return "Bênção Luminar";
     }
 
     @Override
     public int getPreco() {
-        return preco;
+        return 200;
     }
 
     @Override
     public String getDescricao() {
-        return descricao;
+        return """
+                Muitos acreditam ser apenas um mito inventado por desesperados, mas para a Cúpula dos Absolutos, é uma ameaça real o suficiente para justificar massacres.
+                Não é apenas um item; é uma âncora para aqueles que têm uma tarefa inacabada com a vida.
+                A Igreja do Sol Poente protege estas poucas raridades com o próprio sangue, esperando pelo momento em que a 'pessoa certa' precisará recusar o fim.
+                """;
+    }
+
+    @Override
+    public String getEfeitoDescrição() {
+        return "???";
     }
 
     @Override
@@ -58,6 +57,12 @@ public class BencaoLuminar implements Consumiveis {
 
     @Override
     public String toString() {
-        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
+        return String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                this.getNome(), this.getPreco(), this.getDescricao(), this.getEfeitoDescrição());
     }
 }

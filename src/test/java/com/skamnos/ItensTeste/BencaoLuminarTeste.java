@@ -31,12 +31,17 @@ public class BencaoLuminarTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-            Efeito: ---???---
             Muitos acreditam ser apenas um mito inventado por desesperados, mas para a Cúpula dos Absolutos, é uma ameaça real o suficiente para justificar massacres.
             Não é apenas um item; é uma âncora para aqueles que têm uma tarefa inacabada com a vida.
             A Igreja do Sol Poente protege estas poucas raridades com o próprio sangue, esperando pelo momento em que a 'pessoa certa' precisará recusar o fim.
             """;
         assertEquals(descricaoEsperada, bencaoLuminar.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        String efeitoDescricaoEsperada = "???";
+        assertEquals(efeitoDescricaoEsperada, bencaoLuminar.getEfeitoDescrição());
     }
 
     @Test
@@ -61,4 +66,16 @@ public class BencaoLuminarTeste {
         assertEquals(25, jogador.getVida());
     }
     
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+            "\n[ ITEM CONSUMÍVEL ]\n" +
+            "Nome: %-15s | Preço: %d g\n" +
+            "Descrição: %s\n" +
+            "Efeito: %s\n" +
+            "--------------------------",
+            bencaoLuminar.getNome(), bencaoLuminar.getPreco(), bencaoLuminar.getDescricao(), bencaoLuminar.getEfeitoDescrição()
+        );
+        assertEquals(toStringEsperado, bencaoLuminar.toString());
+    }
 }

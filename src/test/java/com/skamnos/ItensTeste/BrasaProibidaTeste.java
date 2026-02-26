@@ -31,12 +31,17 @@ public class BrasaProibidaTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-            Efeito: ---Recupera 20 Pontos de Mana---
             O ápice da loucura de Korthos. Após se perder em suas próprias fórmulas, ele criou esta versão extremamente agressiva que recupera muita mana instantaneamente.
             Mesmo após a Legião banir suas pesquisas, Korthos continuou a refiná-la em segredo.
             Dizem que ele se tornou viciado na própria criação antes de desaparecer sem deixar rastros.
             """;
         assertEquals(descricaoEsperada, brasaProibida.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        String efeitoDescricaoEsperada = "Recupera 20 Pontos de Mana";
+        assertEquals(efeitoDescricaoEsperada, brasaProibida.getEfeitoDescrição());
     }
 
     @Test
@@ -70,5 +75,18 @@ public class BrasaProibidaTeste {
         jogador.setMana(30);
         brasaProibida.usar(jogador);
         assertEquals(30, jogador.getMana());
+    }
+
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+            "\n[ ITEM CONSUMÍVEL ]\n" +
+            "Nome: %-15s | Preço: %d g\n" +
+            "Descrição: %s\n" +
+            "Efeito: %s\n" +
+            "--------------------------",
+            brasaProibida.getNome(), brasaProibida.getPreco(), brasaProibida.getDescricao(), brasaProibida.getEfeitoDescrição()
+        );
+        assertEquals(toStringEsperado, brasaProibida.toString());
     }
 }

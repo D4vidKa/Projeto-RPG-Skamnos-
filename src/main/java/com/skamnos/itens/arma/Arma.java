@@ -34,4 +34,7 @@ public interface Arma extends Equipamento {
 
     // Método para obter o elemento da arma, se aplicável
     public Elemento getElementoItem();
+
+    @Override
+    String toString();
 }

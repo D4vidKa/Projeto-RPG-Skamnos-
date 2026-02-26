@@ -1,37 +1,37 @@
 package com.skamnos.itens.listaItens;
+
 import com.skamnos.itens.consumiveis.Consumiveis;
 import com.skamnos.modelo.jogador.Jogador;
 
 /*
     Classe que representa a Brasa Proibida, um item consumível que restaura mana.
  */
-public class BrasaProibida implements Consumiveis{
-    // Atributos do item
-    private String nome = "Brasa Proibida";
-    private int preco = 70;
-    private String descricao = """
-            Efeito: ---Recupera 20 Pontos de Mana---
-            O ápice da loucura de Korthos. Após se perder em suas próprias fórmulas, ele criou esta versão extremamente agressiva que recupera muita mana instantaneamente.
-            Mesmo após a Legião banir suas pesquisas, Korthos continuou a refiná-la em segredo.
-            Dizem que ele se tornou viciado na própria criação antes de desaparecer sem deixar rastros.
-            """;
-
+public class BrasaProibida implements Consumiveis {
     /*
-    Métodos implementados da interface Consumiveis
+     * Métodos implementados da interface Consumiveis
      */
     @Override
     public String getNome() {
-        return nome;
+        return "Brasa Proibida";
     }
 
     @Override
     public int getPreco() {
-        return preco;
+        return 70;
     }
 
     @Override
     public String getDescricao() {
-        return descricao;
+        return """
+                O ápice da loucura de Korthos. Após se perder em suas próprias fórmulas, ele criou esta versão extremamente agressiva que recupera muita mana instantaneamente.
+                Mesmo após a Legião banir suas pesquisas, Korthos continuou a refiná-la em segredo.
+                Dizem que ele se tornou viciado na própria criação antes de desaparecer sem deixar rastros.
+                """;
+    }
+
+    @Override
+    public String getEfeitoDescrição() {
+        return "Recupera 20 Pontos de Mana";
     }
 
     @Override
@@ -47,6 +47,12 @@ public class BrasaProibida implements Consumiveis{
 
     @Override
     public String toString() {
-        return nome + " - Preço: " + preco + " moedas de ouro\n" + descricao;
+        return String.format(
+                "\n[ ITEM CONSUMÍVEL ]\n" +
+                        "Nome: %-15s | Preço: %d g\n" +
+                        "Descrição: %s\n" +
+                        "Efeito: %s\n" +
+                        "--------------------------",
+                this.getNome(), this.getPreco(), this.getDescricao(), this.getEfeitoDescrição());
     }
 }

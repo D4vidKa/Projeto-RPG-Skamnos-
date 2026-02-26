@@ -31,12 +31,16 @@ public class CinzaRubraTeste {
     @Test
     public void deveTerDescricaoCorreta() {
         String descricaoEsperada = """
-            Efeito: ---Recupera 10 Pontos de Mana---
             Uma pílula cáustica que incendeia os canais de mana do usuário, recuperando parte de sua energia.
             Desenvolvida por Korthos, o Alquimista de Ferro, a mando da Legião de Escamas para manter seus soldados em combate contínuo,
             sua fórmula é cercada de rumores sombrios: dizem que foi criada ilegalmente nos laboratórios militares usando cinzas de dissidentes e combustíveis instáveis que 'fritam' o corpo por dentro.
             """;
         assertEquals(descricaoEsperada, cinzaRubra.getDescricao());
+    }
+
+    @Test
+    public void deveTerEfeitoDescricaoCorreta() {
+        assertEquals("Recupera 10 Pontos de Mana", cinzaRubra.getEfeitoDescrição());
     }
 
     @Test
@@ -70,5 +74,18 @@ public class CinzaRubraTeste {
         jogador.setMana(30);
         cinzaRubra.usar(jogador);
         assertEquals(30, jogador.getMana());
+    }
+
+    @Test
+    public void deveTerToStringCorreto() {
+        String toStringEsperado = String.format(
+            "\n[ ITEM CONSUMÍVEL ]\n" +
+            "Nome: %-15s | Preço: %d g\n" +
+            "Descrição: %s\n" +
+            "Efeito: %s\n" +
+            "--------------------------",
+            cinzaRubra.getNome(), cinzaRubra.getPreco(), cinzaRubra.getDescricao(), cinzaRubra.getEfeitoDescrição()
+        );
+        assertEquals(toStringEsperado, cinzaRubra.toString());
     }
 }
