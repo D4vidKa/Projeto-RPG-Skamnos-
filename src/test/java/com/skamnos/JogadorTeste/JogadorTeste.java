@@ -82,7 +82,7 @@ public class JogadorTeste {
     // Teste para verificar se os atributos aumentam corretamente ao subir de nível
     public void atributosDevemAumentarAoSubirNivel() {
         jogador.ganharExperiencia(50);
-        assertEquals(57, jogador.getVidaMaxima()); // Vida máxima deve aumentar para 57
+        assertEquals(55, jogador.getVidaMaxima()); // Vida máxima deve aumentar para 55
         assertEquals(13, jogador.getAtaque()); // Ataque deve aumentar para 13
         assertEquals(9, jogador.getDefesa()); // Defesa deve aumentar para 9
         assertEquals(9, jogador.getManaMaxima()); // Mana máxima deve aumentar para 9

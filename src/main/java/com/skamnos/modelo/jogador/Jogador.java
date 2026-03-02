@@ -315,4 +315,5 @@ public class Jogador extends Entidade {
         System.out.println("Corpo: " + (corpoEquipada != null ? corpoEquipada.getNome() : "Nenhuma"));
         System.out.println("-------------------------\n");
     }
+    
 }

@@ -103,7 +103,7 @@ public abstract class Entidade {
     // Metodos abstratos para ações específicas das entidades
 
     // Método para atacar outra entidade
-    public void atacar(Entidade alvo) {
+    public int atacar(Entidade alvo) {
         // Lógica para calcular o dano causado ao alvo
         int danoBase = (this.ataque - alvo.getDefesa());
 
@@ -118,6 +118,7 @@ public abstract class Entidade {
         }
         // Aplica o dano ao alvo
         alvo.receberDano(danoBase);
+        return danoBase; // Retorna o dano causado para possíveis efeitos adicionais
     };
 
     // Método para receber dano

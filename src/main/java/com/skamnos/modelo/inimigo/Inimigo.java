@@ -65,7 +65,7 @@ public abstract class Inimigo extends Entidade{
     }
 
     // Método abstrato para executar o turno do inimigo, a ser implementado por cada tipo específico de inimigo
-    public abstract void executarTurno();
+    public abstract void executarTurno(Jogador jogador);
 
     // Metodo para receber o ouro ao morrer
     public int getOuroDropado(int numeroArea) {
@@ -80,11 +80,14 @@ public abstract class Inimigo extends Entidade{
     // Método para verificar se o inimigo morreu e conceder recompensas ao jogador
     // Deve ser implementado depois da classe Jogador ser implementada
     public void morrer(Jogador jogador) {
-        
+        if (jogador != null) {
+            jogador.ganharOuro(this.getOuroDropado(this.nivelArea));
+            jogador.ganharExperiencia(this.getExpDropada(this.nivelArea));
+        }
     }
 
     @Override
-    public void atacar(Entidade alvo) {
-        super.atacar(alvo);
+    public int atacar(Entidade alvo) {
+        return super.atacar(alvo);
     }
 }
