@@ -1,4 +1,4 @@
-package com.skamnos.JogadorTeste;
+package com.skamnos.jogadorTeste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

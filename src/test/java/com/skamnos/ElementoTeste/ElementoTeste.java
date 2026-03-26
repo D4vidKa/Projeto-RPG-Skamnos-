@@ -1,4 +1,4 @@
-package com.skamnos.ElementoTeste;
+package com.skamnos.elementoTeste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

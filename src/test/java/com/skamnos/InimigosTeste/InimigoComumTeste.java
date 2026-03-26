@@ -1,4 +1,4 @@
-package com.skamnos.InimigosTeste;
+package com.skamnos.inimigosTeste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
