@@ -7,16 +7,17 @@ import org.junit.jupiter.api.Test;
 
 import com.skamnos.itens.listaItens.LagrimaDeHydrax;
 import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.itens.listaEquipamentos.*;
-import java.util.ArrayList;
 
 public class JogadorTeste {
     private Jogador jogador;
 
     @BeforeEach
     public void setUp() {
-        jogador = new Jogador("Teste", 50, 10, 7, 8, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null, null, null);
+        Inventario inventario = new Inventario(30);
+        jogador = new Jogador("Teste", 50, 10, 7, 8, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null, null, inventario);
     }
 
     @Test
@@ -132,15 +133,16 @@ public class JogadorTeste {
     @Test
     // Teste para verificar se uma arma pode ser equipada no lugar de outra
     public void deveTrocarEquipamento() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Cria os equipamentos
         LancaDeDante lancaDeDante = new LancaDeDante();
         OVeredito oVeredito = new OVeredito();
         // Adiciona os equipamentos ao inventário do jogador
-        jogador.getInventario().add(lancaDeDante);
-        jogador.getInventario().add(oVeredito);
+        jogador.getInventario().adicionarItem(lancaDeDante);
+        jogador.getInventario().adicionarItem(oVeredito);
         // Simula o uso do primeiro equipamento
         jogador.equiparItem(lancaDeDante);
         // Simula a troca para o segundo equipamento

@@ -1,6 +1,7 @@
 package com.skamnos.itens.listaItens;
 
 import com.skamnos.itens.consumiveis.Consumiveis;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.modelo.jogador.Jogador;
 
 /*
@@ -34,6 +35,12 @@ public class LagrimaDeHydrax implements Consumiveis {
     }
 
     @Override
+    public void removerDoInventario(Jogador jogador) {
+        Inventario inventario = jogador.getInventario();
+        inventario.removerItem(this);
+    }
+
+    @Override
     // Método para usar o item, restaurando a vida do jogador
     public void usar(Jogador alvo) {
         int valorCura = 40;
@@ -43,8 +50,8 @@ public class LagrimaDeHydrax implements Consumiveis {
             return;
         } else {
             alvo.receberCura(valorCura);
-            System.out.println(
-                    alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + this.getNome() + ".");
+            System.out.println(alvo.getNome() + " restaurou " + valorCura + " pontos de vida usando " + this.getNome() + ".");
+            this.removerDoInventario(alvo);
         }
     }
 

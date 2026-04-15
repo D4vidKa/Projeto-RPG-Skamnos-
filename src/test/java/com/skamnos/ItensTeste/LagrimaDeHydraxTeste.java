@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.modelo.elemento.Elemento;
-
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.itens.listaItens.*;
 
 public class LagrimaDeHydraxTeste {
@@ -46,9 +45,10 @@ public class LagrimaDeHydraxTeste {
     @Test
     // Item deve funcionar corretamente ao ser usado por um jogador
     public void deveRestaurarVidaCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com vida reduzida
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Configura o jogador com vida reduzida
         jogador.setVida(10);
         // Usa a lágrima de hydrax
@@ -61,9 +61,10 @@ public class LagrimaDeHydraxTeste {
     @Test
     // Item não deve exceder a vida máxima do jogador
     public void naoDeveExcederVidaMaxima() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com vida reduzida
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Configura o jogador com vida reduzida
         jogador.setVida(45);
         // Usa a lágrima de hydrax
@@ -76,9 +77,10 @@ public class LagrimaDeHydraxTeste {
     @Test
     // Item não deve ser usado se o jogador já estiver com a vida cheia
     public void naoDeveUsarComVidaCheia() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com vida cheia
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Usa a lágrima de hydrax
         lagrimaDeHydrax.usar(jogador);
         // Verifica se a vida permanece a mesma (50)

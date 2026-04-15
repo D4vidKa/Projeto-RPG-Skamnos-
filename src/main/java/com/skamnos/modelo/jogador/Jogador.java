@@ -2,14 +2,12 @@ package com.skamnos.modelo.jogador;
 
 import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.entidade.Entidade;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.itens.equipamento.Equipamento;
 import com.skamnos.itens.item.Item;
 import com.skamnos.itens.arma.Arma;
 import com.skamnos.itens.cabeca.Cabeca;
 import com.skamnos.itens.corpo.Corpo;
-
-import java.util.List;
-import java.util.ArrayList;
 
 public class Jogador extends Entidade {
     // Atributos específicos do jogador
@@ -19,12 +17,12 @@ public class Jogador extends Entidade {
     protected Arma armaEquipada;
     protected Cabeca cabecaEquipada;
     protected Corpo corpoEquipada;
-    protected List<Item> inventario;
+    protected Inventario inventario;
 
     // Construtor
     public Jogador(String nome, int vidaMaxima, int ataque, int defesa, int manaMaxima, int nivel, Elemento elemento,
             int ouro, int experiencia, String ultimoCheckpoint, Item armaEquipada, Item cabecaEquipada,
-            Item corpoEquipada, List<Item> inventario) {
+            Item corpoEquipada, Inventario inventario) {
         super(nome, vidaMaxima, ataque, defesa, manaMaxima, nivel, elemento);
         // Inicialização dos atributos específicos do jogador
         this.nome = nome;
@@ -42,7 +40,7 @@ public class Jogador extends Entidade {
         this.armaEquipada = null;
         this.cabecaEquipada = null;
         this.corpoEquipada = null;
-        this.inventario = new ArrayList<>();
+        this.inventario = inventario;
     }
 
     // Getters e Setters
@@ -94,11 +92,11 @@ public class Jogador extends Entidade {
         this.corpoEquipada = corpoEquipada;
     }
 
-    public List<Item> getInventario() {
+    public Inventario getInventario() {
         return inventario;
     }
 
-    public void setInventario(List<Item> inventario) {
+    public void setInventario(Inventario inventario) {
         this.inventario = inventario;
     }
 
@@ -178,7 +176,7 @@ public class Jogador extends Entidade {
     public boolean comprarItem(Item item) {
         if (this.ouro >= item.getPreco()) {
             this.ouro -= item.getPreco();
-            this.inventario.add(item);
+            this.inventario.adicionarItem(item);
             System.out.println("Item " + item.getNome() + " comprado com sucesso! ");
             return true; // Compra bem-sucedida
         } else {
@@ -212,7 +210,7 @@ public class Jogador extends Entidade {
 
     // Método para equipar um item, verificando se o item está no inventário e atualizando os atributos do jogador
     public boolean equiparItem(Equipamento item) {
-        if (this.inventario.contains(item)) {
+        if (this.inventario.getItens().contains(item)) {
             switch (item.getTipoArma()) {
                 case "Arma":
                     // Equipar a arma e atualizar os atributos do jogador

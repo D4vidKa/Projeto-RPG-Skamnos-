@@ -1,6 +1,7 @@
 package com.skamnos.itens.listaItens;
 
 import com.skamnos.itens.consumiveis.Consumiveis;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.modelo.jogador.Jogador;
 
 /*
@@ -34,6 +35,12 @@ public class MilagreDeHydrax implements Consumiveis {
     }
 
     @Override
+    public void removerDoInventario(Jogador jogador) {
+        Inventario inventario = jogador.getInventario();
+        inventario.removerItem(this);
+    }
+
+    @Override
     // Método para usar o item, restaurando toda a vida do jogador
     public void usar(Jogador alvo) {
         if (alvo.getVida() >= alvo.getVidaMaxima()) {
@@ -43,6 +50,7 @@ public class MilagreDeHydrax implements Consumiveis {
         } else {
             alvo.restaurarVidaMaxima();
             System.out.println(alvo.getNome() + " restaurou toda a vida usando " + this.getNome() + ".");
+            this.removerDoInventario(alvo);
         }
     }
 

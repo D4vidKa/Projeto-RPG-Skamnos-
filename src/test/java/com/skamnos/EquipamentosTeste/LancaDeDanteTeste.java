@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.itens.listaEquipamentos.*;
 
 public class LancaDeDanteTeste {
@@ -59,11 +59,12 @@ public class LancaDeDanteTeste {
 
     @Test
     public void deveUsarEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(lancaDeDante);
+        jogador.getInventario().adicionarItem(lancaDeDante);
         // Simula o uso do equipamento
         jogador.equiparItem(lancaDeDante);
         // Verifica os bônus aplicados
@@ -75,11 +76,12 @@ public class LancaDeDanteTeste {
 
     @Test
     public void deveDesequiparEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(lancaDeDante);
+        jogador.getInventario().adicionarItem(lancaDeDante);
         // Simula o uso do equipamento
         jogador.equiparItem(lancaDeDante);
         // Simula a desequipagem do equipamento
@@ -93,9 +95,10 @@ public class LancaDeDanteTeste {
 
     @Test
     public void naoPodeEquiparSeNaoTiverNoInventario() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Tenta equipar o item sem adicioná-lo ao inventário
         jogador.equiparItem(lancaDeDante);
         // Verifica que os bônus não foram aplicados
@@ -107,9 +110,10 @@ public class LancaDeDanteTeste {
 
     @Test
     public void naoPodeDesequiparSeNaoEstiverEquipado() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Tenta desequipar o item sem tê-lo equipado
         boolean resultado = jogador.desequiparItem(lancaDeDante);
         // Verifica que o equipamento não foi desequipado
@@ -119,15 +123,16 @@ public class LancaDeDanteTeste {
     @Test
     // teste para verificar a compra
     public void deveComprarEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com dinheiro suficiente
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 100, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Simula a compra do equipamento
         boolean resultado = jogador.comprarItem(lancaDeDante);
         // Verifica que o equipamento foi comprado e adicionado ao inventário
         assertEquals(true, resultado);
-        assertEquals(1, jogador.getInventario().size());
-        assertEquals(lancaDeDante, jogador.getInventario().get(0));
+        assertEquals(1, jogador.getInventario().getQuantidadeDeItens());
+        assertEquals(lancaDeDante, jogador.getInventario().obterItem(0));
         // Verifica que o dinheiro foi descontado
         assertEquals(50, jogador.getOuro()); // 100 - 50 do equipamento
     }

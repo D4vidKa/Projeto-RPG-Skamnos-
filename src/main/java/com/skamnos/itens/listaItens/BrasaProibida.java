@@ -1,6 +1,7 @@
 package com.skamnos.itens.listaItens;
 
 import com.skamnos.itens.consumiveis.Consumiveis;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.modelo.jogador.Jogador;
 
 /*
@@ -35,6 +36,12 @@ public class BrasaProibida implements Consumiveis {
     }
 
     @Override
+    public void removerDoInventario(Jogador jogador) {
+        Inventario inventario = jogador.getInventario();
+        inventario.removerItem(this);
+    }
+
+    @Override
     public void usar(Jogador alvo) {
         if (alvo.getMana() >= alvo.getManaMaxima()) {
             System.out.println("Sua mana já está cheia. A Brasa Proibida não teve efeito.");
@@ -42,6 +49,7 @@ public class BrasaProibida implements Consumiveis {
             int manaRestaurada = 20;
             alvo.setMana(Math.min(alvo.getMana() + manaRestaurada, alvo.getManaMaxima()));
             System.out.println("Você usou a Brasa Proibida e recuperou " + manaRestaurada + " pontos de mana!");
+            this.removerDoInventario(alvo);
         }
     }
 

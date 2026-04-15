@@ -4,9 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.modelo.elemento.Elemento;
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.itens.listaEquipamentos.*;
 
 public class OVereditoTeste {
@@ -58,11 +58,12 @@ public class OVereditoTeste {
 
     @Test
     public void deveUsarEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(oVeredito);
+        jogador.getInventario().adicionarItem(oVeredito);
         // Simula o uso do equipamento
         jogador.equiparItem(oVeredito);
         // Verifica os bônus aplicados
@@ -74,11 +75,12 @@ public class OVereditoTeste {
 
     @Test
     public void deveDesequiparEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // adiciona o equipamento ao inventário do jogador
-        jogador.getInventario().add(oVeredito);
+        jogador.getInventario().adicionarItem(oVeredito);
         // Simula o uso do equipamento
         jogador.equiparItem(oVeredito);
         // Simula a desequipagem do equipamento
@@ -92,9 +94,10 @@ public class OVereditoTeste {
 
     @Test
     public void naoPodeEquiparSeNaoTiverNoInventario() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Tenta equipar o item sem tê-lo no inventário
         boolean resultado = jogador.equiparItem(oVeredito);
         // Verifica que o equipamento não foi equipado
@@ -103,9 +106,10 @@ public class OVereditoTeste {
 
     @Test
     public void naoPodeDesequiparSeNaoEstiverEquipado() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Tenta desequipar o item sem tê-lo equipado
         boolean resultado = jogador.desequiparItem(oVeredito);
         // Verifica que o equipamento não foi desequipado
@@ -115,15 +119,16 @@ public class OVereditoTeste {
     @Test
     // teste para verificar a compra
     public void deveComprarEquipamentoCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com dinheiro suficiente
         Jogador jogador = new Jogador("Teste", 100, 10, 5, 20, 1, Elemento.VITAS, 100, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Simula a compra do equipamento
         boolean resultado = jogador.comprarItem(oVeredito);
         // Verifica que o equipamento foi comprado e adicionado ao inventário
         assertEquals(true, resultado);
-        assertEquals(1, jogador.getInventario().size());
-        assertEquals(oVeredito, jogador.getInventario().get(0));
+        assertEquals(1, jogador.getInventario().getQuantidadeDeItens());
+        assertEquals(oVeredito, jogador.getInventario().obterItem(0));
         // Verifica que o dinheiro foi descontado
         assertEquals(20, jogador.getOuro()); // 100 - 80 do equipamento
     }

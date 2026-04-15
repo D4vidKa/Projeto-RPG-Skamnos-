@@ -2,6 +2,7 @@ package com.skamnos.itens.listaItens;
 
 import com.skamnos.itens.consumiveis.Consumiveis;
 import com.skamnos.modelo.jogador.Jogador;
+import com.skamnos.modelo.inventario.Inventario;
 
 /*
     Classe que representa a Bênção Luminar, um item consumível.
@@ -35,6 +36,12 @@ public class BencaoLuminar implements Consumiveis {
     }
 
     @Override
+    public void removerDoInventario(Jogador jogador) {
+        Inventario inventario = jogador.getInventario();
+        inventario.removerItem(this);
+    }
+
+    @Override
     // O efeito deve ser reviver o jogador com 100% da vida máxima.
     public void usar(Jogador alvo) {
         if (alvo.estaVivo()) {
@@ -43,7 +50,6 @@ public class BencaoLuminar implements Consumiveis {
                     A luz se recusa a brilhar para aqueles que ainda caminham sob o sol.
                     """);
         } else {
-            alvo.restaurarVidaMaxima();
             System.out.println(
                     """
                             O frio do abismo começa a envolver sua consciência e o mundo desbota em cinzas...
@@ -52,6 +58,8 @@ public class BencaoLuminar implements Consumiveis {
                             A Benção Luminar se desfaz em cinzas estelares enquanto sua alma é puxada de volta ao corpo.
                             ---Você vive novamente!---
                             """);
+            alvo.restaurarVidaMaxima();
+            removerDoInventario(alvo);
         }
     }
 

@@ -4,10 +4,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import java.util.ArrayList;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.modelo.elemento.Elemento;
-
+import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.itens.listaItens.*;
 
 public class MilagreDeHydraxTeste {
@@ -46,9 +45,10 @@ public class MilagreDeHydraxTeste {
     @Test
     // Item deve funcionar corretamente ao ser usado por um jogador
     public void deveRestaurarVidaCorretamente() {
+        Inventario inventario = new Inventario(30);
         // Configura o jogador com vida reduzida
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         // Configura o jogador com vida reduzida
         jogador.setVida(1);
         // Usa a lágrima de hydrax
@@ -60,9 +60,10 @@ public class MilagreDeHydraxTeste {
     // Teste para garantir que o item não seja usado quando a vida do jogador já
     // estiver cheia
     public void naoDeveUsarQuandoVidaCheia() {
+        Inventario inventario = new Inventario(30);
         // Criar um jogador com vida cheia
         Jogador jogador = new Jogador("Teste", 50, 10, 5, 5, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null,
-                null, new ArrayList<>());
+                null, inventario);
         jogador.setVida(50);
 
         // Usar o Milagre de Hydrax

@@ -1,8 +1,8 @@
 package com.skamnos.modelo.inventario;
+
 import java.util.ArrayList;
 import java.util.List;
 import com.skamnos.itens.item.Item;
-
 
 public class Inventario {
     // Atributos do inventário
@@ -31,7 +31,7 @@ public class Inventario {
     public void setCapacidadeMaxima(int capacidadeMaxima) {
         this.capacidadeMaxima = capacidadeMaxima;
     }
-    
+
     // Método para adicionar um item ao inventário
     public boolean adicionarItem(Item item) {
         if (itens.size() < capacidadeMaxima) {
@@ -65,5 +65,18 @@ public class Inventario {
                 System.out.println("- " + item.getNome());
             }
         }
+    }
+
+    // Métdodo para obter o índice de um item no inventário
+    public Item obterItem(int indice) {
+        if (indice >= 0 && indice < itens.size()) {
+            return itens.get(indice);
+        }
+        return null; // Retorna null se o índice for inválido
+    }
+
+    // Método para saber quantos itens tem no inventário
+    public int getQuantidadeDeItens() {
+        return itens.size();
     }
 }
