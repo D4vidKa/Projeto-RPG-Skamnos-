@@ -4,6 +4,9 @@ import com.skamnos.itens.arma.Arma;
 import com.skamnos.modelo.elemento.Elemento;
 
 public class OVeredito implements Arma {
+    public OVeredito() {
+    }
+
     @Override
     public String getNome() {
         return "O Veredito";

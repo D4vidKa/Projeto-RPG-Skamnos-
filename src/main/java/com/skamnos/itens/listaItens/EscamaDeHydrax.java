@@ -8,6 +8,9 @@ import com.skamnos.modelo.jogador.Jogador;
  * Classe que representa a Escama de Hydrax, um item consumível que restaura vida.
  */
 public class EscamaDeHydrax implements Consumiveis {
+    public EscamaDeHydrax() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

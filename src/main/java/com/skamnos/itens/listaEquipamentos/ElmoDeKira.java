@@ -3,6 +3,10 @@ package com.skamnos.itens.listaEquipamentos;
 import com.skamnos.itens.cabeca.Cabeca;
 
 public class ElmoDeKira implements Cabeca {
+    
+    public ElmoDeKira() {
+    }
+
     @Override
     public String getNome() {
         return "Elmo de Kira";

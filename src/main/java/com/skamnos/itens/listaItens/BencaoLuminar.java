@@ -8,6 +8,10 @@ import com.skamnos.modelo.inventario.Inventario;
     Classe que representa a Bênção Luminar, um item consumível.
  */
 public class BencaoLuminar implements Consumiveis {
+
+    public BencaoLuminar() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

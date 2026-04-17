@@ -4,6 +4,10 @@ import com.skamnos.itens.arma.Arma;
 import com.skamnos.modelo.elemento.Elemento;
 
 public class FenixEncarnada implements Arma{
+
+    public FenixEncarnada() {
+    }
+
     @Override
     public String getNome() {
         return "Fênix Encarnada";

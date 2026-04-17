@@ -3,6 +3,8 @@ package com.skamnos.itens.listaEquipamentos;
 import com.skamnos.itens.cabeca.Cabeca;
 
 public class MascaraEterna implements Cabeca{
+    public MascaraEterna() {
+    }
 
     @Override
     public String getNome() {

@@ -8,6 +8,9 @@ import com.skamnos.modelo.jogador.Jogador;
     Classe que representa a Brasa Proibida, um item consumível que restaura mana.
  */
 public class BrasaProibida implements Consumiveis {
+    public BrasaProibida() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

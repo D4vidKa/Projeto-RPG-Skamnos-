@@ -8,6 +8,9 @@ import com.skamnos.modelo.jogador.Jogador;
     Classe que representa a Cinza Rubra, um item consumível que restaura mana.
  */
 public class CinzaRubra implements Consumiveis {
+    public CinzaRubra() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

@@ -9,6 +9,11 @@ public class Inventario {
     private List<Item> itens;
     private int capacidadeMaxima = 30;
 
+    // Construtor vazio
+    public Inventario() {
+        this.itens = new ArrayList<>();
+    }
+
     // Construtor do inventário
     public Inventario(int capacidadeMaxima) {
         this.itens = new ArrayList<>();

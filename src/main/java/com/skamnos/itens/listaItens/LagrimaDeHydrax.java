@@ -8,6 +8,9 @@ import com.skamnos.modelo.jogador.Jogador;
  * Classe que representa a Lágrima de Hydrax, um item consumível que restaura vida.
  */
 public class LagrimaDeHydrax implements Consumiveis {
+    public LagrimaDeHydrax() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

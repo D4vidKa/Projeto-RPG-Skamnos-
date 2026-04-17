@@ -6,7 +6,7 @@
 
   <groupId>com.skamnos</groupId>
   <artifactId>rpg-skamnos</artifactId>
-  <version>0.0.6-SNAPSHOT</version>
+  <version>0.0.6.1-SNAPSHOT</version>
 
   <name>rpg-skamnos</name>
   <!-- FIXME change it to the project's website -->
@@ -19,6 +19,18 @@
   </properties>
 
   <dependencies>
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-databind</artifactId>
+        <version>2.17.0</version>
+    </dependency>
+
+    <dependency>
+        <groupId>com.fasterxml.jackson.core</groupId>
+        <artifactId>jackson-annotations</artifactId>
+        <version>2.17.0</version>
+    </dependency>
+
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter</artifactId>

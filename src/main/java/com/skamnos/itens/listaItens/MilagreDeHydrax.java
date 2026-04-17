@@ -8,6 +8,9 @@ import com.skamnos.modelo.jogador.Jogador;
  * Classe que representa o Milagre de Hydrax, um item consumível que restaura toda a vida.
  */
 public class MilagreDeHydrax implements Consumiveis {
+    public MilagreDeHydrax() {
+    }
+
     /*
      * Métodos implementados da interface Consumiveis
      */

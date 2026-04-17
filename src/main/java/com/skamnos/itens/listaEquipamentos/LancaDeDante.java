@@ -4,6 +4,9 @@ import com.skamnos.itens.arma.Arma;
 import com.skamnos.modelo.elemento.Elemento;
 
 public class LancaDeDante implements Arma {
+    public LancaDeDante() {
+    }
+
     @Override
     public String getNome() {
         return "Lança de Dante";
