@@ -3,6 +3,7 @@ package com.skamnos.modelo.jogador;
 import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.entidade.Entidade;
 import com.skamnos.modelo.inventario.Inventario;
+import com.skamnos.motor.jogoSalvo.JogoSalvo;
 import com.skamnos.itens.equipamento.Equipamento;
 import com.skamnos.itens.item.Item;
 import com.skamnos.itens.arma.Arma;
@@ -185,21 +186,25 @@ public class Jogador extends Entidade {
         }
     }
 
-    // Método para salvar o estado do jogador
-    // JogoSalvo ainda não implementado, mas a ideia é criar um objeto JogoSalvo que
-    // armazene todas as informações relevantes do jogador, como nível, etc.
-    /*
-     * public JogoSalvo salvarJogo() {
-     * 
-     * }
-     */
-
-    // Método para carregar o estado do jogador a partir de um jogo salvo
-    /*
-     * public void carregarJogo(JogoSalvo save) {
-     * 
-     * }
-     */
+    // Método para salvar o estado do jogador em um jogo salvo, armazenando as informações relevantes, usando jackson para serializar o objeto do jogador e salvar em um arquivo JSON
+    public void salvarJogo(JogoSalvo dados){
+        dados.setNomeSalvo(this.nome);
+        dados.setVidaMaximaSalva(this.vidaMaxima);
+        dados.setVidaSalva(this.vida);
+        dados.setAtaqueSalvo(this.ataque);
+        dados.setDefesaSalva(this.defesa);
+        dados.setManaMaximaSalva(this.manaMaxima);
+        dados.setManaSalva(this.mana);
+        dados.setNivelSalvo(this.nivel);
+        dados.setElementoSalvo(this.elemento);
+        dados.setOuroSalvo(this.ouro);
+        dados.setExperienciaSalva(this.experiencia);
+        dados.setCheckpointSalvo(this.ultimoCheckpoint);
+        dados.setArmaSalva(this.armaEquipada);
+        dados.setCabecaSalva(this.cabecaEquipada);
+        dados.setCorpoSalvo(this.corpoEquipada);
+        dados.setInventarioSalvo(this.inventario);
+    }
 
     // Método para descansar e recuperar vida e mana
     public void descansar() {
@@ -313,5 +318,4 @@ public class Jogador extends Entidade {
         System.out.println("Corpo: " + (corpoEquipada != null ? corpoEquipada.getNome() : "Nenhuma"));
         System.out.println("-------------------------\n");
     }
-    
 }

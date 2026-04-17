@@ -15,9 +15,11 @@ public class JogoSalvo {
      * Atributos que armazenam as informações do jogo salvo.
      */
     private String nomeSalvo;
+    private int vidaMaximaSalva;
     private int vidaSalva;
     private int ataqueSalvo;
     private int defesaSalva;
+    private int manaMaximaSalva;
     private int manaSalva;
     private int nivelSalvo;
     private Elemento elementoSalvo;
@@ -34,14 +36,16 @@ public class JogoSalvo {
     }
 
     // Construtor
-    public JogoSalvo(String nomeSalvo, int vidaSalva, int ataqueSalvo, int defesaSalva, int manaSalva, int nivelSalvo,
+    public JogoSalvo(String nomeSalvo, int vidaMaximaSalva, int vidaSalva, int ataqueSalvo, int defesaSalva, int manaMaximaSalva, int manaSalva, int nivelSalvo,
             Elemento elementoSalvo, int ouroSalvo, int experienciaSalva, String checkpointSalvo, Arma armaSalva,
             Cabeca cabecaSalva, Corpo corpoSalvo, Inventario inventarioSalvo) {
         // Atributos do Personagem
         this.nomeSalvo = nomeSalvo;
+        this.vidaMaximaSalva = vidaMaximaSalva;
         this.vidaSalva = vidaSalva;
         this.ataqueSalvo = ataqueSalvo;
         this.defesaSalva = defesaSalva;
+        this.manaMaximaSalva = manaMaximaSalva;
         this.manaSalva = manaSalva;
         this.nivelSalvo = nivelSalvo;
         this.elementoSalvo = elementoSalvo;
@@ -62,6 +66,14 @@ public class JogoSalvo {
 
     public void setNomeSalvo(String nomeSalvo) {
         this.nomeSalvo = nomeSalvo;
+    }
+
+    public int getVidaMaximaSalva() {
+        return vidaMaximaSalva;
+    }
+
+    public void setVidaMaximaSalva(int vidaMaximaSalva) {
+        this.vidaMaximaSalva = vidaMaximaSalva;
     }
 
     public int getVidaSalva() {
@@ -87,6 +99,14 @@ public class JogoSalvo {
     public void setDefesaSalva(int defesaSalva) {
         this.defesaSalva = defesaSalva;
     }
+
+    public int getManaMaximaSalva() {
+        return manaMaximaSalva;
+    }
+
+    public void setManaMaximaSalva(int manaMaximaSalva) {
+        this.manaMaximaSalva = manaMaximaSalva;
+    }   
 
     public int getManaSalva() {
         return manaSalva;
