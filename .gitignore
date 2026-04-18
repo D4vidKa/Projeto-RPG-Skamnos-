@@ -27,5 +27,15 @@ replay_pid*
 .target/
 
 # IDE specific files
+.settings/
+.project/
+.classpath/
 .vscode/
 /target/
+
+# Ignore save files
+saves/
+
+# Ignore temporary files
+.DS_Store
+thumbs.db

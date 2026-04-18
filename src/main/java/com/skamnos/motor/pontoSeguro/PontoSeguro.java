@@ -2,6 +2,7 @@ package com.skamnos.motor.pontoSeguro;
 
 import com.skamnos.motor.jogoSalvo.JogoSalvo;
 import com.skamnos.modelo.jogador.*;
+import com.skamnos.motor.saveManager.SaveManager;
 
 /**
  * Classe que representa um Ponto Seguro no jogo.
@@ -37,5 +38,15 @@ public class PontoSeguro {
     // Métoto para gerenciar o descanço do jogador
     public void gerenciarDescanso(Jogador jogador) {
         jogador.descansar();
+    }
+
+    // Método para executar o salvamento do jogo
+    public void executarSave(Jogador jogador) {
+        JogoSalvo dadosParaSalvar = new JogoSalvo();
+
+        jogador.salvarJogo(dadosParaSalvar);
+
+        SaveManager saveManager = new SaveManager();
+        saveManager.salvarJogo(dadosParaSalvar);
     }
 }

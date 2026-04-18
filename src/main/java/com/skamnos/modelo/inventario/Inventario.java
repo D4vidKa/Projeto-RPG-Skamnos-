@@ -3,7 +3,7 @@ package com.skamnos.modelo.inventario;
 import java.util.ArrayList;
 import java.util.List;
 import com.skamnos.itens.item.Item;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Inventario {
     // Atributos do inventário
     private List<Item> itens;
@@ -81,6 +81,7 @@ public class Inventario {
     }
 
     // Método para saber quantos itens tem no inventário
+    @JsonIgnore
     public int getQuantidadeDeItens() {
         return itens.size();
     }
