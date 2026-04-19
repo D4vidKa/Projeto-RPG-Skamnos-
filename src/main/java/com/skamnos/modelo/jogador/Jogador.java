@@ -206,6 +206,26 @@ public class Jogador extends Entidade {
         dados.setInventarioSalvo(this.inventario);
     }
 
+    // Método para carregar o estado do jogador a partir de um jogo salvo, restaurando as informações relevantes, usando jackson para desserializar o objeto do jogador a partir de um arquivo JSON
+    public void carregarJogo(JogoSalvo dados){
+        this.nome = dados.getNomeSalvo();
+        this.vidaMaxima = dados.getVidaMaximaSalva();
+        this.vida = dados.getVidaSalva();
+        this.ataque = dados.getAtaqueSalvo();
+        this.defesa = dados.getDefesaSalva();
+        this.manaMaxima = dados.getManaMaximaSalva();
+        this.mana = dados.getManaSalva();
+        this.nivel = dados.getNivelSalvo();
+        this.elemento = dados.getElementoSalvo();
+        this.ouro = dados.getOuroSalvo();
+        this.experiencia = dados.getExperienciaSalva();
+        this.ultimoCheckpoint = dados.getCheckpointSalvo();
+        this.armaEquipada = (Arma) dados.getArmaSalva();
+        this.cabecaEquipada = (Cabeca) dados.getCabecaSalva();
+        this.corpoEquipada = (Corpo) dados.getCorpoSalvo();
+        this.inventario = dados.getInventarioSalvo();
+    }
+
     // Método para descansar e recuperar vida e mana
     public void descansar() {
         this.vida = this.vidaMaxima;

@@ -1,5 +1,6 @@
 package com.skamnos.motor.saveManager;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import java.io.File;
@@ -14,6 +15,7 @@ public class SaveManager {
 
     public SaveManager() {
         this.objectMapper = new ObjectMapper();
+        this.objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
         this.objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
         // Criar a pasta de salvamento se não existir
         File pastaSalvos = new File(PASTA_SALVOS);
@@ -35,8 +37,15 @@ public class SaveManager {
     // Método para carregar o jogo
     public JogoSalvo carregarJogo() {
         try {
-            return objectMapper.readValue(new File(CAMINHO_ARQUIVO), JogoSalvo.class);
-        } catch (IOException e) {
+            File arquivo = new File(CAMINHO_ARQUIVO);
+            if (arquivo.exists()) {
+                System.out.println("Jogo carregado com sucesso!");
+                return objectMapper.readValue(arquivo, JogoSalvo.class);
+                } else {
+                System.err.println("Nenhum jogo salvo encontrado.");
+                return null;
+            }
+        } catch (Exception e) {
             System.err.println("Erro ao carregar o jogo: " + e.getMessage());
             return null;
         }

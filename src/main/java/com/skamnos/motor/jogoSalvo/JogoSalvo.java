@@ -36,7 +36,8 @@ public class JogoSalvo {
     }
 
     // Construtor
-    public JogoSalvo(String nomeSalvo, int vidaMaximaSalva, int vidaSalva, int ataqueSalvo, int defesaSalva, int manaMaximaSalva, int manaSalva, int nivelSalvo,
+    public JogoSalvo(String nomeSalvo, int vidaMaximaSalva, int vidaSalva, int ataqueSalvo, int defesaSalva,
+            int manaMaximaSalva, int manaSalva, int nivelSalvo,
             Elemento elementoSalvo, int ouroSalvo, int experienciaSalva, String checkpointSalvo, Arma armaSalva,
             Cabeca cabecaSalva, Corpo corpoSalvo, Inventario inventarioSalvo) {
         // Atributos do Personagem
@@ -106,7 +107,7 @@ public class JogoSalvo {
 
     public void setManaMaximaSalva(int manaMaximaSalva) {
         this.manaMaximaSalva = manaMaximaSalva;
-    }   
+    }
 
     public int getManaSalva() {
         return manaSalva;
@@ -187,6 +188,5 @@ public class JogoSalvo {
     public void setInventarioSalvo(Inventario inventarioSalvo) {
         this.inventarioSalvo = inventarioSalvo;
     }
-
 
 }

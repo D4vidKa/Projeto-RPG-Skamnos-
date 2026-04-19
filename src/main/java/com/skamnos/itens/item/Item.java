@@ -1,5 +1,6 @@
 package com.skamnos.itens.item;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.skamnos.itens.listaEquipamentos.*;
@@ -28,9 +29,12 @@ public interface Item {
     /*
      * Métodos que todo item deve implementar
      */
+    @JsonIgnore
     String getNome();
 
+    @JsonIgnore
     int getPreco();
 
+    @JsonIgnore
     String getDescricao();
 }
