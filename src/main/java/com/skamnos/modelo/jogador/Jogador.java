@@ -9,6 +9,7 @@ import com.skamnos.itens.item.Item;
 import com.skamnos.itens.arma.Arma;
 import com.skamnos.itens.cabeca.Cabeca;
 import com.skamnos.itens.corpo.Corpo;
+import com.skamnos.motor.itemVenda.ItemVenda;
 
 public class Jogador extends Entidade {
     // Atributos específicos do jogador
@@ -174,14 +175,14 @@ public class Jogador extends Entidade {
 
     // Método para comprar um item, verificando o custo e atualizando o ouro do
     // jogador
-    public boolean comprarItem(Item item) {
-        if (this.ouro >= item.getPreco()) {
-            this.ouro -= item.getPreco();
-            this.inventario.adicionarItem(item);
-            System.out.println("Item " + item.getNome() + " comprado com sucesso! ");
+    public boolean comprarItem(ItemVenda item) {
+        if (this.ouro >= item.getItem().getPreco()) {
+            this.ouro -= item.getItem().getPreco();
+            this.inventario.adicionarItem(item.getItem());
+            System.out.println("Item " + item.getItem().getNome() + " comprado com sucesso! ");
             return true; // Compra bem-sucedida
         } else {
-            System.out.println("Ouro insuficiente para comprar " + item.getNome());
+            System.out.println("Ouro insuficiente para comprar " + item.getItem().getNome());
             return false; // Ouro insuficiente para comprar o item
         }
     }

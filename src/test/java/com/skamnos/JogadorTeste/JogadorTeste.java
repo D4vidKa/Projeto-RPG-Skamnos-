@@ -2,6 +2,8 @@ package com.skamnos.jogadorTeste;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,15 +12,33 @@ import com.skamnos.modelo.elemento.Elemento;
 import com.skamnos.modelo.inventario.Inventario;
 import com.skamnos.modelo.jogador.Jogador;
 import com.skamnos.itens.listaEquipamentos.*;
+import com.skamnos.motor.itemVenda.ItemVenda;
+import com.skamnos.motor.vendedor.Vendedor;
 
 public class JogadorTeste {
     private Jogador jogador;
+    private Vendedor vendedor;
 
     @BeforeEach
     public void setUp() {
         Inventario inventario = new Inventario(30);
         jogador = new Jogador("Teste", 50, 10, 7, 8, 1, Elemento.VITAS, 0, 1, "Início do Jogo", null, null, null, inventario);
     }
+
+    @BeforeEach
+    public void setUpVendedor() {
+        Vendedor vendedor = new Vendedor("Teste", new ArrayList<ItemVenda>());
+        this.vendedor = vendedor;
+    }
+
+    @BeforeEach
+    public void setUpItemVenda() {
+        LagrimaDeHydrax lagrimaDeHydrax = new LagrimaDeHydrax();
+        ItemVenda itemVenda = new ItemVenda();
+        itemVenda.setItem(lagrimaDeHydrax);
+        itemVenda.setQuantidade(10);
+    }
+
 
     @Test
     // Teste para verificar se o jogador ganha ouro corretamente
@@ -102,9 +122,8 @@ public class JogadorTeste {
     @Test
     // Teste para saber se o item é comprado corretamente
     public void deveComprarItem() {
-        LagrimaDeHydrax lagrimaDeHydrax = new LagrimaDeHydrax(); // Cria uma instância do item Lágrima de Hydrax
         jogador.ganharOuro(200); // Dá ao jogador ouro suficiente para comprar o item
-        boolean comprado = jogador.comprarItem(lagrimaDeHydrax); // Tenta comprar o item Lágrima de Hydrax
+        boolean comprado = vendedor.realizarVenda(jogador, vendedor.getEstoque().get(1)); // Tenta comprar o item Lágrima de Hydrax
         assertEquals(true, comprado); // O item deve ser comprado com sucesso
         assertEquals(135, jogador.getOuro()); // O ouro do jogador deve ser reduzido para 0 após a compra
     }
@@ -113,9 +132,7 @@ public class JogadorTeste {
     // Teste para verificar que o jogador não pode comprar um item se não tiver ouro
     // suficiente
     public void naoDeveComprarItemSemOuroSuficiente() {
-        LagrimaDeHydrax lagrimaDeHydrax = new LagrimaDeHydrax(); // Cria uma instância do item Lágrima de Hydrax
-        boolean comprado = jogador.comprarItem(lagrimaDeHydrax); // Tenta comprar o item Lágrima de Hydrax sem ouro
-                                                                 // suficiente
+        boolean comprado = vendedor.realizarVenda(jogador, vendedor.getEstoque().get(1)); // Tenta comprar o item Lágrima de Hydrax sem ouro suficiente
         assertEquals(false, comprado); // O item não deve ser comprado
         assertEquals(0, jogador.getOuro()); // O ouro do jogador deve permanecer 0
     }
